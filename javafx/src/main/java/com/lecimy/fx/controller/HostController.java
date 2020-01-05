@@ -21,15 +21,15 @@ public class HostController implements Initializable {
     public HostController() {
         quizzes = FXCollections.observableArrayList();
         quizzes.addAll(new Quiz("Alkohole", 10, 0),
-            new Quiz("Alkohole", 10, 0),
-            new Quiz("Alkohole", 10, 0),
-            new Quiz("Alkohole", 10, 0),
-            new Quiz("Alkohole", 10, 0));
+            new Quiz("Alkohole2", 10, 0),
+            new Quiz("Alkohole3", 10, 0),
+            new Quiz("Alkohole4", 10, 0));
     }
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         listView.setItems(quizzes);
         listView.setCellFactory(e -> new HostListViewCell());
+        listView.getStylesheets().add(getClass().getResource("../css/styles.css").toExternalForm());
     }
 }

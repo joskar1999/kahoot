@@ -44,6 +44,10 @@ public class HostListViewCell extends ListCell<Quiz> {
             setText(null);
             setGraphic(anchorPane);
         }
+    }
 
+    @FXML
+    public void getCellClicked() {
+        System.out.println(quizName.getText());
     }
 }
