@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="768.0" prefWidth="1366.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.java.com.lecimy.fx.controller.QuestionController">
+    <children>
+        <ImageView fitHeight="795.0" fitWidth="1394.0" layoutX="-8.0" layoutY="-8.0">
+            <image>
+                <Image url="@assets/background.png" />
+            </image>
+        </ImageView>
+        <HBox layoutX="64.0" layoutY="186.0" prefHeight="66.0" prefWidth="524.0">
+            <children>
+                <Text fx:id="quizName" fill="#ff9900" strokeType="OUTSIDE" strokeWidth="0.0" text="Alkohole">
+                    <font>
+                        <Font name="Segoe UI" size="24.0" />
+                    </font>
+                    <HBox.margin>
+                        <Insets left="24.0" top="10.0" />
+                    </HBox.margin>
+                </Text>
+                <Text fx:id="questionNumber" fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Pytanie 1">
+                    <font>
+                        <Font name="Segoe UI" size="24.0" />
+                    </font>
+                    <HBox.margin>
+                        <Insets left="24.0" right="16.0" top="10.0" />
+                    </HBox.margin>
+                </Text>
+            </children>
+        </HBox>
+      <Text fx:id="questionText" fill="WHITE" layoutX="90.0" layoutY="280.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Po jakiej ilości tequili się rzyga?">
+         <font>
+            <Font name="Arial" size="24.0" />
+         </font>
+      </Text>
+      <ImageView fitHeight="93.0" fitWidth="465.0" layoutX="186.0" layoutY="446.0" onMouseClicked="#aClicked" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@assets/Rectangle%2023.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="104.0" fitWidth="425.0" layoutX="749.0" layoutY="586.0" onMouseClicked="#dClicked" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@assets/Rectangle%2023.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="104.0" fitWidth="425.0" layoutX="185.0" layoutY="586.0" onMouseClicked="#cClicked" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@assets/Rectangle%2023.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="104.0" fitWidth="425.0" layoutX="749.0" layoutY="446.0" onMouseClicked="#bClicked" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@assets/Rectangle%2023.png" />
+         </image>
+      </ImageView>
+      <Text fx:id="answerA" fill="WHITE" layoutX="231.0" layoutY="501.0" onMouseClicked="#aClicked" strokeType="OUTSIDE" strokeWidth="0.0" text="A: 350ml">
+         <font>
+            <Font name="Arial" size="24.0" />
+         </font>
+      </Text>
+      <Text fx:id="answerD" fill="WHITE" layoutX="803.0" layoutY="640.0" onMouseClicked="#dClicked" strokeType="OUTSIDE" strokeWidth="0.0" text="D: 1000ml">
+         <font>
+            <Font name="Arial" size="24.0" />
+         </font>
+      </Text>
+      <Text fx:id="answerC" fill="WHITE" layoutX="231.0" layoutY="640.0" onMouseClicked="#cClicked" strokeType="OUTSIDE" strokeWidth="0.0" text="C: 750ml">
+         <font>
+            <Font name="Arial" size="24.0" />
+         </font>
+      </Text>
+      <Text fx:id="answerB" fill="WHITE" layoutX="803.0" layoutY="501.0" onMouseClicked="#bClicked" strokeType="OUTSIDE" strokeWidth="0.0" text="B: 500ml">
+         <font>
+            <Font name="Arial" size="24.0" />
+         </font>
+      </Text>
+    </children>
+</AnchorPane>
