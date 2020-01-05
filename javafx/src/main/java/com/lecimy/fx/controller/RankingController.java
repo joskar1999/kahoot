@@ -6,7 +6,6 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.ListView;
 import main.java.com.lecimy.fx.model.Position;
-import main.java.com.lecimy.fx.model.Quiz;
 import main.java.com.lecimy.fx.viewutils.RankingListViewCell;
 
 import java.net.URL;
