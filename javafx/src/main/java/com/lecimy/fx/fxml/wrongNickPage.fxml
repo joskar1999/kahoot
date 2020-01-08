@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="768.0" prefWidth="1366.0" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.java.com.lecimy.fx.controller.WrongNickController">
+    <children>
+        <ImageView fitHeight="787.0" fitWidth="1385.0">
+            <image>
+                <Image url="@assets/background.png" />
+            </image>
+        </ImageView>
+        <ImageView fitHeight="65.0" fitWidth="516.0" layoutX="435.0" layoutY="275.0" pickOnBounds="true" preserveRatio="true">
+            <image>
+                <Image url="@assets/zajęty.png" />
+            </image>
+        </ImageView>
+        <ImageView fx:id="sendButton" fitHeight="65.0" fitWidth="516.0" layoutX="430.0" layoutY="518.0" onMouseClicked="#sendNick" pickOnBounds="true" preserveRatio="true">
+            <image>
+                <Image url="@assets/send.png" />
+            </image>
+        </ImageView>
+      <TextField fx:id="nickText" layoutX="425.0" layoutY="384.0" prefHeight="65.0" prefWidth="516.0" promptText="Nick..." style="-fx-background-color: #1b1b1b;">
+         <font>
+            <Font name="Arial" size="24.0" />
+         </font>
+      </TextField>
+    </children>
+</AnchorPane>
