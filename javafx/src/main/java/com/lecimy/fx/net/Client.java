@@ -16,17 +16,25 @@ public class Client {
     private PrintWriter printer;
     private DataOutputStream outputStream;
 
-    public Client(String ip, int port, String nick) {
-        this.ip = ip;
-        this.port = port;
-        this.nick = nick;
+    private Client() {
+
+    }
+
+    private void enableNetworking() {
         try {
-            this.socket = new Socket(ip, port);
+            this.socket = new Socket(this.ip, this.port);
             this.printer = new PrintWriter(socket.getOutputStream(), true);
             this.outputStream = new DataOutputStream(socket.getOutputStream());
         } catch (IOException e) {
             System.out.println("Unable to create socket: " + e.getMessage());
         }
+    }
+
+    public void setConnectionParams(String ip, int port, String nick) {
+        this.ip = ip;
+        this.port = port;
+        this.nick = nick;
+        enableNetworking();
     }
 
     public void sendMessage(String message) {
@@ -66,5 +74,13 @@ public class Client {
 
     public Socket getSocket() {
         return socket;
+    }
+
+    private static class ClientSingleton {
+        private static final Client INSTANCE = new Client();
+    }
+
+    public static Client getInstance() {
+        return ClientSingleton.INSTANCE;
     }
 }
