@@ -8,33 +8,106 @@
 #include <netinet/in.h>
 #include <arpa/inet.h>
 #include <curl/curl.h>
-#include <pthread.h>
+#include <thread>
 #include <iostream>
+#include <vector>
+
 
 using namespace std;
 
 #define ServerPort 1280
 
+
+
 struct User {
-    int clientDesc;
-    char login[100];
+    int userDesc;
+    string login;
 };
 
+vector < User > Users;
+
+string convertToString(char* a, int size)
+{
+    int i;
+    string s = "";
+    for (i = 0; i < size; i++) {
+        s = s + a[i];
+    }
+    return s;
+}
+
+bool authentication(string username){
+
+    bool isUnique = true;
+    for(int i=0; i<Users.size(); i++){
+        if(Users[i].login == username){
+            isUnique = false;
+            break;
+        }
+    }
+    return isUnique;
+}
+
+void userThread(int &clientDesc){
+
+    cout << "Siemano jestem uzytkownikiem" << endl;
+//    send(clientDesc, "Hello, world!\n", 13, 0);
+//    char *hello = "Hello";
+    char usernameBuffer[100];
+    while(1){
+
+        ssize_t msgsize = recv(clientDesc, usernameBuffer, 100, 0);
+        string username = convertToString(usernameBuffer, msgsize);
+        memset(usernameBuffer, 0, 100);
+        cout << username << endl;
+
+        //Autentykacja loginu
+        bool userLoginChecker = authentication(username);
+        if(userLoginChecker){
+            User connectedUser;
+            connectedUser.login = username;
+            connectedUser.userDesc = clientDesc;
+            Users.push_back(connectedUser);
+            write(clientDesc , "OK\n", 3);
+            break;
+        }
+        else{
+            write(clientDesc , "NO\n", 3);
+            continue;
+        }
+    }
 
 
-int main(int argc, char ** argv) {
-//    if(argc!=2){
-//        printf("Usage: %s <port>\n", argv[0]);
-//        return 1;
+
+
+//    int written_bytes;
+//    while((written_bytes=write(clientDesc , "JP\n", 3))< 0) {
+//        if (written_bytes == -1) {
+//            fprintf(stderr, "Blad przy wysylaniu do znaku # do jednego z klientow");
+//            return;
+//        }
 //    }
-//    char * endp;
-//    long port = strtol(argv[1], &endp, 10);
-//    if(*endp || port > 65535 || port < 1){
-//        printf("Usage: %s <port>\n", argv[0]);
-//        return 1;
-//    }
+//    char buffer[4];
+//    bzero(buffer,4);
+
+//    cout << buffer << endl;
+
+
+
+}
+
+void clientConnection(int clientDesc){
+
+    cout << "Zostalo nawiazane polaczenie z clientem, tworzony jest nowy watek" << endl;
+
+    thread thd1(userThread, std::ref(clientDesc)); //Uruchomienie watka oraz przekazanie do niego deskryptora clienta
+    thd1.join();
+}
+
+int main() {
 
     cout << "Server started" << endl;
+
 
     // Przygotowanie adresu przekazywanego do funkcji bind.
     // Połączenia przychodzące pod podany w funkcji bind adres będą trafiać do nasłuchującego gniazda.
@@ -68,10 +141,13 @@ int main(int argc, char ** argv) {
 
         // accept zwraca deskryptor pliku nawiązanego połączenia (czekając na to połączenie, jeśli żadnego nie ma w kolejce)
         int connectDesc = accept(serverDesc, nullptr, nullptr);
+
         if(connectDesc == -1){
             perror("accept failed");
             return 1;
         }
+        clientConnection(connectDesc);
+
     }
 
 
