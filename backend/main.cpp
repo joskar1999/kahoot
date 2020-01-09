@@ -48,6 +48,11 @@ bool authentication(string username){
     return isUnique;
 }
 
+void hostClient(int clientDesc){
+    write(clientDesc , "OK\n", 3);
+
+}
+
 void userThread(int &clientDesc){
 
     cout << "Siemano jestem uzytkownikiem" << endl;
@@ -75,6 +80,13 @@ void userThread(int &clientDesc){
             write(clientDesc , "NO\n", 3);
             continue;
         }
+    }
+    //Autentykacja zostala zakończona, przechodzimy do wyboru pomiędzy Admin, Gracz a Host
+    char roleDecisionBuffer[100];
+    ssize_t msgsize = recv(clientDesc, roleDecisionBuffer, 100, 0);
+    string selectedRole = convertToString(roleDecisionBuffer, msgsize);
+    if(selectedRole == "HOST"){
+        hostClient(clientDesc);
     }
 
 
