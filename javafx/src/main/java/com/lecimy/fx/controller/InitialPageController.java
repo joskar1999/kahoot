@@ -4,8 +4,12 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
+import main.java.com.lecimy.fx.listener.EventListener;
+import main.java.com.lecimy.fx.listener.OnFailureNickCreationListener;
+import main.java.com.lecimy.fx.listener.OnSuccessNickCreationListener;
 import main.java.com.lecimy.fx.net.Client;
 import main.java.com.lecimy.fx.net.ClientThread;
+import main.java.com.lecimy.fx.net.handler.NickInitializationHandler;
 import main.java.com.lecimy.fx.viewutils.ViewUtils;
 import org.apache.commons.lang3.StringUtils;
 
@@ -26,7 +30,6 @@ public class InitialPageController implements Initializable {
     @FXML
     private TextField nickTextField;
 
-    private Client client;
     private ViewUtils utils;
 
     public InitialPageController() {
@@ -44,11 +47,16 @@ public class InitialPageController implements Initializable {
             Client client = Client.getInstance();
             client.setConnectionParams(ipTextField.getText(), Integer.parseInt(portTextField.getText()), nickTextField.getText());
             client.sendMessage(nickTextField.getText());
+
             System.out.println("wysłano nick : " + nickTextField.getText());
+
             ClientThread clientThread = ClientThread.getInstance();
             clientThread.initClientThread(client);
-            clientThread.setOnSuccessNickCreationListener(() -> utils.switchScenes("welcomePage.fxml"));
-            clientThread.setOnFailureNickCreationListener(() -> utils.switchScenes("wrongNickPage.fxml"));
+            clientThread.setRequestHandler(new NickInitializationHandler());
+            clientThread.setEventListeners(new EventListener[]{
+                (OnSuccessNickCreationListener) () -> utils.switchScenes("welcomePage.fxml"),
+                (OnFailureNickCreationListener) () -> utils.switchScenes("wrongNickPage.fxml")
+            });
             clientThread.run();
         } else {
             System.out.println("All fields have to be filled out"); //todo popup

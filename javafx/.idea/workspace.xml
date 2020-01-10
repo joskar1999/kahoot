@@ -2,21 +2,44 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="4d8342fe-4751-48ef-92b3-aa4306440feb" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/issuestore/0/f/0fda67ee1fab3962f6d06566a2d77a3c5e3e14a5" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/sonarlint/issuestore/0/f/0fda67ee1fab3962f6d06566a2d77a3c5e3e14a5" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/issuestore/index.pb" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/sonarlint/issuestore/index.pb" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/lecimy/fx/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/lecimy/fx/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/lecimy/fx/fxml/welcomePage.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/lecimy/fx/fxml/welcomePage.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/lecimy/fx/controller/HostController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/lecimy/fx/controller/HostController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/lecimy/fx/controller/InitialPageController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/lecimy/fx/controller/InitialPageController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/lecimy/fx/controller/WelcomeController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/lecimy/fx/controller/WelcomeController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/lecimy/fx/controller/WrongNickController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/lecimy/fx/controller/WrongNickController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/lecimy/fx/listener/OnFailureNickCreationListener.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/lecimy/fx/listener/OnFailureNickCreationListener.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/lecimy/fx/listener/OnSuccessNickCreationListener.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/lecimy/fx/listener/OnSuccessNickCreationListener.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/lecimy/fx/net/ClientThread.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/lecimy/fx/net/ClientThread.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
+  <component name="DatabaseView">
+    <option name="SHOW_INTERMEDIATE" value="true" />
+    <option name="GROUP_DATA_SOURCES" value="true" />
+    <option name="GROUP_SCHEMA" value="true" />
+    <option name="GROUP_CONTENTS" value="false" />
+    <option name="SORT_POSITIONED" value="false" />
+    <option name="SHOW_EMPTY_GROUPS" value="false" />
+    <option name="AUTO_SCROLL_FROM_SOURCE" value="false" />
+    <option name="HIDDEN_KINDS">
+      <set />
+    </option>
+    <expand />
+    <select />
+  </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="CSS File" />
-        <option value="Interface" />
+        <option value="Enum" />
         <option value="Class" />
+        <option value="Interface" />
       </list>
     </option>
   </component>
@@ -35,6 +58,7 @@
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
+    <property name="extract.method.default.visibility" value="private" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/libs" />
     <property name="list.type.of.created.stylesheet" value="CSS" />
     <property name="node.js.detected.package.eslint" value="true" />
@@ -99,7 +123,9 @@
       <updated>1578157820522</updated>
       <workItem from="1578157822027" duration="3483000" />
       <workItem from="1578226989352" duration="13156000" />
-      <workItem from="1578500878235" duration="14132000" />
+      <workItem from="1578500878235" duration="15367000" />
+      <workItem from="1578599587362" duration="589000" />
+      <workItem from="1578671518175" duration="5609000" />
     </task>
     <servers />
   </component>
@@ -111,10 +137,10 @@
       <screen x="0" y="0" width="2560" height="1040" />
     </state>
     <state x="101" y="179" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.2560.1040@0.0.2560.1040" timestamp="1578237821453" />
-    <state x="271" y="177" key="#com.intellij.ide.util.MemberChooser" timestamp="1578518961618">
+    <state x="271" y="177" key="#com.intellij.ide.util.MemberChooser" timestamp="1578672795515">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="271" y="177" key="#com.intellij.ide.util.MemberChooser/0.0.1536.824@0.0.1536.824" timestamp="1578518961618" />
+    <state x="271" y="177" key="#com.intellij.ide.util.MemberChooser/0.0.1536.824@0.0.1536.824" timestamp="1578672795515" />
     <state x="339" y="224" key="#com.intellij.ide.util.MemberChooser/0.0.1920.1040@0.0.1920.1040" timestamp="1578503589250" />
     <state x="452" y="224" key="#com.intellij.ide.util.MemberChooser/0.0.2560.1040@0.0.2560.1040" timestamp="1578249872832" />
     <state x="370" y="271" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" timestamp="1578228759714">
@@ -125,28 +151,28 @@
       <screen x="0" y="0" width="2560" height="1040" />
     </state>
     <state x="420" y="279" key="FileChooserDialogImpl/0.0.2560.1040@0.0.2560.1040" timestamp="1578228653253" />
-    <state width="1493" height="190" key="GridCell.Tab.0.bottom" timestamp="1578519454686">
+    <state width="1493" height="190" key="GridCell.Tab.0.bottom" timestamp="1578677749966">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="190" key="GridCell.Tab.0.bottom/0.0.1536.824@0.0.1536.824" timestamp="1578519454686" />
+    <state width="1493" height="190" key="GridCell.Tab.0.bottom/0.0.1536.824@0.0.1536.824" timestamp="1578677749966" />
     <state width="1877" height="190" key="GridCell.Tab.0.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1578503733114" />
     <state width="1248" height="260" key="GridCell.Tab.0.bottom/0.0.2560.1040@0.0.2560.1040" timestamp="1578251026457" />
-    <state width="1493" height="190" key="GridCell.Tab.0.center" timestamp="1578519454686">
+    <state width="1493" height="190" key="GridCell.Tab.0.center" timestamp="1578677749966">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="190" key="GridCell.Tab.0.center/0.0.1536.824@0.0.1536.824" timestamp="1578519454686" />
+    <state width="1493" height="190" key="GridCell.Tab.0.center/0.0.1536.824@0.0.1536.824" timestamp="1578677749966" />
     <state width="1877" height="190" key="GridCell.Tab.0.center/0.0.1920.1040@0.0.1920.1040" timestamp="1578503733113" />
     <state width="1248" height="260" key="GridCell.Tab.0.center/0.0.2560.1040@0.0.2560.1040" timestamp="1578251026457" />
-    <state width="1493" height="190" key="GridCell.Tab.0.left" timestamp="1578519454686">
+    <state width="1493" height="190" key="GridCell.Tab.0.left" timestamp="1578677749951">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="190" key="GridCell.Tab.0.left/0.0.1536.824@0.0.1536.824" timestamp="1578519454686" />
+    <state width="1493" height="190" key="GridCell.Tab.0.left/0.0.1536.824@0.0.1536.824" timestamp="1578677749951" />
     <state width="1877" height="190" key="GridCell.Tab.0.left/0.0.1920.1040@0.0.1920.1040" timestamp="1578503733113" />
     <state width="1248" height="260" key="GridCell.Tab.0.left/0.0.2560.1040@0.0.2560.1040" timestamp="1578251026456" />
-    <state width="1493" height="190" key="GridCell.Tab.0.right" timestamp="1578519454686">
+    <state width="1493" height="190" key="GridCell.Tab.0.right" timestamp="1578677749966">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="190" key="GridCell.Tab.0.right/0.0.1536.824@0.0.1536.824" timestamp="1578519454686" />
+    <state width="1493" height="190" key="GridCell.Tab.0.right/0.0.1536.824@0.0.1536.824" timestamp="1578677749966" />
     <state width="1877" height="190" key="GridCell.Tab.0.right/0.0.1920.1040@0.0.1920.1040" timestamp="1578503733113" />
     <state width="1248" height="260" key="GridCell.Tab.0.right/0.0.2560.1040@0.0.2560.1040" timestamp="1578251026457" />
     <state x="127" y="99" key="SettingsEditor" timestamp="1578239462992">
@@ -157,18 +183,27 @@
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state width="498" height="446" key="SwitcherDM/0.0.1536.824@0.0.1536.824" timestamp="1578512972488" />
-    <state x="333" y="239" width="627" height="568" key="find.popup" timestamp="1578236131934">
-      <screen x="0" y="0" width="2560" height="1040" />
+    <state x="499" y="158" key="extract.method.dialog" timestamp="1578671719073">
+      <screen x="0" y="0" width="1536" height="824" />
     </state>
+    <state x="499" y="158" key="extract.method.dialog/0.0.1536.824@0.0.1536.824" timestamp="1578671719073" />
+    <state x="200" y="189" width="631" height="568" key="find.popup" timestamp="1578520424469">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="200" y="189" width="631" height="568" key="find.popup/0.0.1536.824@0.0.1536.824" timestamp="1578520424469" />
     <state x="333" y="239" width="627" height="568" key="find.popup/0.0.2560.1040@0.0.2560.1040" timestamp="1578236131934" />
     <state x="209" y="0" key="new project wizard" timestamp="1578511769374">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="209" y="0" key="new project wizard/0.0.1536.824@0.0.1536.824" timestamp="1578511769374" />
-    <state x="186" y="182" width="672" height="538" key="search.everywhere.popup" timestamp="1578519279984">
+    <state x="511" y="2" key="refactoring.ChangeSignatureDialog" timestamp="1578672620903">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="186" y="182" width="672" height="538" key="search.everywhere.popup/0.0.1536.824@0.0.1536.824" timestamp="1578519279984" />
+    <state x="511" y="2" key="refactoring.ChangeSignatureDialog/0.0.1536.824@0.0.1536.824" timestamp="1578672620903" />
+    <state x="186" y="182" width="672" height="538" key="search.everywhere.popup" timestamp="1578675744025">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="186" y="182" width="672" height="538" key="search.everywhere.popup/0.0.1536.824@0.0.1536.824" timestamp="1578675744025" />
     <state x="233" y="230" width="672" height="678" key="search.everywhere.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1578503384555" />
     <state x="310" y="230" width="672" height="678" key="search.everywhere.popup/0.0.2560.1040@0.0.2560.1040" timestamp="1578250441179" />
   </component>

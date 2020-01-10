@@ -1,7 +1,7 @@
 package main.java.com.lecimy.fx.net;
 
-import main.java.com.lecimy.fx.listener.OnFailureNickCreationListener;
-import main.java.com.lecimy.fx.listener.OnSuccessNickCreationListener;
+import main.java.com.lecimy.fx.listener.EventListener;
+import main.java.com.lecimy.fx.net.handler.RequestHandler;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -12,11 +12,8 @@ public class ClientThread implements Runnable {
     private Client client;
     private BufferedReader reader;
     private String message;
-    private static final String OK = "OK";
-    private static final String NO = "NO";
-
-    private OnSuccessNickCreationListener onSuccessNickCreationListener;
-    private OnFailureNickCreationListener onFailureNickCreationListener;
+    private RequestHandler requestHandler;
+    private EventListener[] eventListeners;
 
     private ClientThread() {
 
@@ -28,7 +25,7 @@ public class ClientThread implements Runnable {
             reader = new BufferedReader(new InputStreamReader(client.getSocket().getInputStream()));
         } catch (IOException e) {
             e.printStackTrace();
-            System.out.println("Unable to read from the socket!");
+            System.out.println("Unable to read from the socket!\n");
         }
     }
 
@@ -36,16 +33,12 @@ public class ClientThread implements Runnable {
     public void run() {
         try {
             message = reader.readLine();
-            System.out.printf("message : " + message);
+            System.out.println("message : " + message);
         } catch (IOException e) {
             e.printStackTrace();
             System.out.println("Unable to read line!");
         }
-        if (OK.equals(message)) {
-            onSuccessNickCreationListener.onSuccess();
-        } else {
-            onFailureNickCreationListener.onFailure();
-        }
+        requestHandler.handle(message, eventListeners);
         System.out.println("End of thread");
     }
 
@@ -57,11 +50,11 @@ public class ClientThread implements Runnable {
         private static final ClientThread INSTANCE = new ClientThread();
     }
 
-    public void setOnSuccessNickCreationListener(OnSuccessNickCreationListener onSuccessNickCreationListener) {
-        this.onSuccessNickCreationListener = onSuccessNickCreationListener;
+    public void setRequestHandler(RequestHandler requestHandler) {
+        this.requestHandler = requestHandler;
     }
 
-    public void setOnFailureNickCreationListener(OnFailureNickCreationListener onFailureNickCreationListener) {
-        this.onFailureNickCreationListener = onFailureNickCreationListener;
+    public void setEventListeners(EventListener[] eventListeners) {
+        this.eventListeners = eventListeners;
     }
 }

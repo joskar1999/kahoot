@@ -5,8 +5,12 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
 import javafx.scene.text.Text;
+import main.java.com.lecimy.fx.listener.EventListener;
+import main.java.com.lecimy.fx.listener.OnFailureNickCreationListener;
+import main.java.com.lecimy.fx.listener.OnSuccessNickCreationListener;
 import main.java.com.lecimy.fx.net.Client;
 import main.java.com.lecimy.fx.net.ClientThread;
+import main.java.com.lecimy.fx.net.handler.NickInitializationHandler;
 import main.java.com.lecimy.fx.viewutils.ViewUtils;
 import org.apache.commons.lang3.StringUtils;
 
@@ -40,10 +44,13 @@ public class WrongNickController implements Initializable {
         if (StringUtils.isNotEmpty(nickText.getText())) {
             Client client = Client.getInstance();
             ClientThread clientThread = ClientThread.getInstance();
-            clientThread.setOnSuccessNickCreationListener(() -> utils.switchScenes("welcomePage.fxml"));
-            clientThread.setOnFailureNickCreationListener(() -> {
-                nickInfo.setText("Ponownie podano zajęty nick!");
-                System.out.printf("Nick zajęty");
+            clientThread.setRequestHandler(new NickInitializationHandler());
+            clientThread.setEventListeners(new EventListener[]{
+                (OnSuccessNickCreationListener) () -> utils.switchScenes("welcomePage.fxml"),
+                (OnFailureNickCreationListener) () -> {
+                    nickInfo.setText("Ponownie podano zajęty nick!");
+                    System.out.printf("Nick zajęty");
+                }
             });
             client.sendMessage(nickText.getText());
             clientThread.run();

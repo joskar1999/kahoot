@@ -1,7 +1,7 @@
 package main.java.com.lecimy.fx.listener;
 
 @FunctionalInterface
-public interface OnFailureNickCreationListener extends EventListener {
+public interface OnFailureHostCreationListener extends EventListener {
 
     void onFailure();
 }

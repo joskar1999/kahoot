@@ -20,10 +20,6 @@ public class HostController implements Initializable {
 
     public HostController() {
         quizzes = FXCollections.observableArrayList();
-        quizzes.addAll(new Quiz("Alkohole", 10, 0),
-            new Quiz("Alkohole2", 10, 0),
-            new Quiz("Alkohole3", 10, 0),
-            new Quiz("Alkohole4", 10, 0));
     }
 
     @Override
