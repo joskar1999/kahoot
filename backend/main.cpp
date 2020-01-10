@@ -11,13 +11,24 @@
 #include <thread>
 #include <iostream>
 #include <vector>
+#include <fstream>
 
 
 using namespace std;
 
 #define ServerPort 1280
 
+struct Question{
+    string question;
+    string a,b,c,d;
+    string answer;
+};
 
+struct Quiz{
+    string title;
+    vector <Question> questions;
+    int questionsAmount;
+};
 
 struct User {
     int userDesc;
@@ -25,6 +36,8 @@ struct User {
 };
 
 vector < User > Users;
+
+vector <Quiz>  allQuiz;
 
 string convertToString(char* a, int size)
 {
@@ -46,6 +59,49 @@ bool authentication(string username){
         }
     }
     return isUnique;
+}
+
+void addAllQuiz(string quizArray[], int quizAmount){
+
+    cout << "Ile quizow: " << quizAmount << endl;
+    for(int i=0; i<quizAmount; i++){
+        ifstream quizFile;
+        quizFile.open(quizArray[i]);
+        if( !quizFile.good() )
+            cout << "Blad wczytania pliku" << endl;
+        int questionAmount;
+        quizFile >> questionAmount;
+        Quiz quiz;
+        quiz.questionsAmount = questionAmount;
+        quiz.title = quizArray[i];
+
+        for(int j=0;j < questionAmount;j++){
+            string questionText,a,b,c,d,answer;
+            Question simpleQuestion;
+            getline(quizFile,questionText);
+            cout << questionText << endl;
+            getline(quizFile,a);
+            getline(quizFile,b);
+            getline(quizFile,c);
+            getline(quizFile,d);
+            getline(quizFile,answer);
+//            quizFile >> simpleQuestion.question;
+//            quizFile >> simpleQuestion.a;
+//            quizFile >> simpleQuestion.b;
+//            quizFile >> simpleQuestion.c;
+//            quizFile >> simpleQuestion.d;
+//            quizFile >> simpleQuestion.answer;
+            simpleQuestion.question = questionText;
+            simpleQuestion.a = a;
+            simpleQuestion.b = b;
+            simpleQuestion.c = c;
+            simpleQuestion.d = d;
+            simpleQuestion.answer = answer;
+
+            quiz.questions.push_back(simpleQuestion);
+        }
+        allQuiz.push_back(quiz);
+    }
 }
 
 void hostClient(int clientDesc){
@@ -119,6 +175,24 @@ void clientConnection(int clientDesc){
 int main() {
 
     cout << "Server started" << endl;
+
+    string quizFiles[5] = { "alkohole.txt", "pilka_nozna.txt",
+                         "sasiedzi_polski.txt", "stolice.txt", "wojsko.txt" };
+
+    addAllQuiz(quizFiles, 5);
+    cout << "Rozmar quizow: " << allQuiz.size() << endl;
+    for(int i=0; i<allQuiz.size();i++){
+        cout << "Quiz: " << allQuiz[i].title << endl;
+        for(int j=0; j<allQuiz[i].questionsAmount;j++){
+            cout << "Pytanie: " << allQuiz[i].questions[j].question << endl;
+            cout << "1: " << allQuiz[i].questions[j].a << endl;
+            cout << "2: " << allQuiz[i].questions[j].b << endl;
+            cout << "3: " << allQuiz[i].questions[j].c << endl;
+            cout << "4: " << allQuiz[i].questions[j].d << endl;
+            cout << "odpowiedz: " << allQuiz[i].questions[j].answer << endl;
+        }
+        cout << endl;
+    }
 
 
     // Przygotowanie adresu przekazywanego do funkcji bind.

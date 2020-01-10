@@ -1,0 +1,49 @@
+7
+Manama to stolica nastepujacego kraju:
+Bahamy
+Bahrajn
+Bangladesz
+Barbados
+b
+Nikozja to stolica nastepujacego kraju:
+Grecja
+Chorwacja
+Cypr
+Czechy
+c
+Tallinn to stolica nastepujacego kraju:
+Litwa
+Luxemburg
+Finlandia 
+Estonia
+d
+Addis Abeba to stolica nastepujacego kraju:
+Ekwador
+Somalia
+Etiopia
+Filipiny
+c
+Helsinki to stolica nastepujacego kraju:
+Finlandia
+Szwecja
+Norwegia
+Dania
+a
+Teheran to stolica nastepujacego kraju:
+Irak
+Iran
+Afganistan
+Turkmenistan
+b
+Moroni to stolica nastepujacego kraju:
+Madagaskar
+Ghana
+Laos
+Komory
+d
+Vaduz to stolica nastepujacego kraju:
+Kolumbia
+Wenezuela
+Panama
+Liechtenstein
+d
