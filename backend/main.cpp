@@ -12,6 +12,7 @@
 #include <iostream>
 #include <vector>
 #include <fstream>
+#include  <string>
 
 
 using namespace std;
@@ -49,6 +50,13 @@ string convertToString(char* a, int size)
     return s;
 }
 
+string removeTxt(string s){
+    if (!s.empty()) {
+        s.resize(s.size() - 4);
+    }
+    return  s;
+}
+
 bool authentication(string username){
 
     bool isUnique = true;
@@ -74,7 +82,8 @@ void addAllQuiz(string quizArray[], int quizAmount){
         quizFile >> omitSpace;
         Quiz quiz;
         quiz.questionsAmount = questionAmount;
-        quiz.title = quizArray[i];
+        string title = removeTxt(quizArray[i]);
+        quiz.title = title;
 
         for(int j=0;j < questionAmount;j++){
             string questionText,a,b,c,d,answer;
@@ -173,7 +182,7 @@ int main() {
 
     addAllQuiz(quizFiles, 5);
 
-//    displayAllQuiz();
+    displayAllQuiz();
 
     sockaddr_in serverAddr {};
     serverAddr.sin_family = AF_INET;
