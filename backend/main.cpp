@@ -63,7 +63,6 @@ bool authentication(string username){
 
 void addAllQuiz(string quizArray[], int quizAmount){
 
-    cout << "Ile quizow: " << quizAmount << endl;
     for(int i=0; i<quizAmount; i++){
         ifstream quizFile;
         quizFile.open(quizArray[i]);
@@ -71,6 +70,8 @@ void addAllQuiz(string quizArray[], int quizAmount){
             cout << "Blad wczytania pliku" << endl;
         int questionAmount;
         quizFile >> questionAmount;
+        string omitSpace;;
+        quizFile >> omitSpace;
         Quiz quiz;
         quiz.questionsAmount = questionAmount;
         quiz.title = quizArray[i];
@@ -79,18 +80,11 @@ void addAllQuiz(string quizArray[], int quizAmount){
             string questionText,a,b,c,d,answer;
             Question simpleQuestion;
             getline(quizFile,questionText);
-            cout << questionText << endl;
             getline(quizFile,a);
             getline(quizFile,b);
             getline(quizFile,c);
             getline(quizFile,d);
             getline(quizFile,answer);
-//            quizFile >> simpleQuestion.question;
-//            quizFile >> simpleQuestion.a;
-//            quizFile >> simpleQuestion.b;
-//            quizFile >> simpleQuestion.c;
-//            quizFile >> simpleQuestion.d;
-//            quizFile >> simpleQuestion.answer;
             simpleQuestion.question = questionText;
             simpleQuestion.a = a;
             simpleQuestion.b = b;
@@ -101,6 +95,22 @@ void addAllQuiz(string quizArray[], int quizAmount){
             quiz.questions.push_back(simpleQuestion);
         }
         allQuiz.push_back(quiz);
+    }
+}
+
+void displayAllQuiz(){
+
+    for(int i=0; i<allQuiz.size();i++){
+        cout << "Quiz: " << allQuiz[i].title << endl;
+        for(int j=0; j<allQuiz[i].questionsAmount;j++){
+            cout << "Pytanie: " << allQuiz[i].questions[j].question << endl;
+            cout << "1: " << allQuiz[i].questions[j].a << endl;
+            cout << "2: " << allQuiz[i].questions[j].b << endl;
+            cout << "3: " << allQuiz[i].questions[j].c << endl;
+            cout << "4: " << allQuiz[i].questions[j].d << endl;
+            cout << "odpowiedz: " << allQuiz[i].questions[j].answer << endl;
+        }
+        cout << endl;
     }
 }
 
@@ -144,24 +154,6 @@ void userThread(int &clientDesc){
     if(selectedRole == "HOST"){
         hostClient(clientDesc);
     }
-
-
-
-
-//    int written_bytes;
-//    while((written_bytes=write(clientDesc , "JP\n", 3))< 0) {
-//        if (written_bytes == -1) {
-//            fprintf(stderr, "Blad przy wysylaniu do znaku # do jednego z klientow");
-//            return;
-//        }
-//    }
-//    char buffer[4];
-//    bzero(buffer,4);
-
-//    cout << buffer << endl;
-
-
-
 }
 
 void clientConnection(int clientDesc){
@@ -180,24 +172,9 @@ int main() {
                          "sasiedzi_polski.txt", "stolice.txt", "wojsko.txt" };
 
     addAllQuiz(quizFiles, 5);
-    cout << "Rozmar quizow: " << allQuiz.size() << endl;
-    for(int i=0; i<allQuiz.size();i++){
-        cout << "Quiz: " << allQuiz[i].title << endl;
-        for(int j=0; j<allQuiz[i].questionsAmount;j++){
-            cout << "Pytanie: " << allQuiz[i].questions[j].question << endl;
-            cout << "1: " << allQuiz[i].questions[j].a << endl;
-            cout << "2: " << allQuiz[i].questions[j].b << endl;
-            cout << "3: " << allQuiz[i].questions[j].c << endl;
-            cout << "4: " << allQuiz[i].questions[j].d << endl;
-            cout << "odpowiedz: " << allQuiz[i].questions[j].answer << endl;
-        }
-        cout << endl;
-    }
 
+//    displayAllQuiz();
 
-    // Przygotowanie adresu przekazywanego do funkcji bind.
-    // Połączenia przychodzące pod podany w funkcji bind adres będą trafiać do nasłuchującego gniazda.
-    // Użycie INADDR_ANY określa, że połączenia przychodzące pod dowolny adres (i wskazany port) będą odbierane.
     sockaddr_in serverAddr {};
     serverAddr.sin_family = AF_INET;
     serverAddr.sin_addr.s_addr = htonl(INADDR_ANY);
@@ -215,8 +192,6 @@ int main() {
         return 1;
     }
 
-    // listen żąda od systemu operacyjnego by podane gniazdo rozpoczęło czekanie na przychodzące połączenia
-    // drugi argument określa ilość połączeń które czekają na odebranie ich funkcja accept
     fail = listen(serverDesc, 1);
     if(fail){
         perror("listen failed");
@@ -239,14 +214,6 @@ int main() {
 
     close(serverDesc);
 
-//    auto currTime = std::time(nullptr);
-//    char * text = std::ctime(&currTime);
-//
-//    int count = write(clientDesc, text, strlen(text));
-//    if(count != (int) strlen(text))
-//        perror("write failed");
-//
-//
 //    shutdown(clientDesc, SHUT_RDWR);
 //    close(clientDesc);
 
