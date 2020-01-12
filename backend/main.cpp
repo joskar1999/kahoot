@@ -13,6 +13,8 @@
 #include <vector>
 #include <fstream>
 #include  <string>
+#include <sstream>
+#include <stdio.h>
 
 
 using namespace std;
@@ -123,14 +125,105 @@ void displayAllQuiz(){
     }
 }
 
+char const* convertIntToChar(int variable){
+
+//    string tempString;
+//    stringstream charToString;
+//    charToString << variable;
+//    tempString = charToString.str();
+//    tempString = tempString + "\n";
+//    char cstr[tempString.size() + 1];
+//    strcpy(cstr, tempString.c_str());	// or pass &s[0]
+//    return cstr;
+
+    std::string s = std::to_string(variable);
+    char const *pchar = s.c_str();  //use char const* as target type
+    return pchar;
+}
+
+char* convertStringToChar(string variable){
+    variable = variable + "\n";
+    char cstr[variable.size() + 1];
+    strcpy(cstr, variable.c_str());	// or pass &s[0]
+    return cstr;
+}
+
+void sendingQuizInformation(int clientDesc){
+
+
+
+    //Wyslanie informacji o rozpoczaciu komunikacji na temat liczby Quizow i pytan
+    write(clientDesc , "QUIZ_HEADERS\n", 13);
+
+    //Konwersja liczby Quizow z int na char aby moc wysylac komunikaty
+    write(clientDesc , "1\n", 2);
+
+    write(clientDesc , "chuj\n", 5);
+    write(clientDesc , "5\n", 2);
+
+//    write(clientDesc , "chuj\n", 5);
+//    write(clientDesc , "5\n", 2);
+//
+//    write(clientDesc , "chuj\n", 5);
+//    write(clientDesc , "5\n", 2);
+//
+//    write(clientDesc , "chuj\n", 5);
+//    write(clientDesc , "5\n", 2);
+//
+//    write(clientDesc , "chuj\n", 5);
+//    write(clientDesc , "5\n", 2);
+
+
+
+
+
+//    string tempString;
+//    stringstream charToString;
+//    charToString << variable;
+//    tempString = charToString.str();
+//    tempString = tempString + "\n";
+//    char cstr[tempString.size() + 1];
+//    strcpy(cstr, tempString.c_str());	// or pass &s[0]
+
+//    char const* quizAmount = convertIntToChar(allQuiz.size());
+
+    //Wyslanie informacji o liczbie Quizow
+//    write(clientDesc , quizAmount, strlen(quizAmount));
+//
+//    for(int i=0; i < allQuiz.size(); i++){
+//        //Wysylamy informacje o tytule
+//        char* title = convertStringToChar(allQuiz[i].title);
+//        write(clientDesc , title, strlen(title));
+//
+//        //Wysylamy  ilosc pytan
+//        char const* questionsAmount = convertIntToChar(allQuiz[i].questionsAmount);
+//        write(clientDesc , questionsAmount, strlen(questionsAmount));
+//
+//    }
+
+    //ilosc pytan
+
+
+
+}
+
 void hostClient(int clientDesc){
+
     write(clientDesc , "OK\n", 3);
+    sendingQuizInformation(clientDesc);
+
+//    sendingQuizInformation(clientDesc);
+
+    //Wysyalanie informacji na temat quizow
+
+
 
 }
 
 void userThread(int &clientDesc){
 
     cout << "Siemano jestem uzytkownikiem" << endl;
+
 //    send(clientDesc, "Hello, world!\n", 13, 0);
 //    char *hello = "Hello";
     char usernameBuffer[100];
@@ -182,7 +275,7 @@ int main() {
 
     addAllQuiz(quizFiles, 5);
 
-    displayAllQuiz();
+//    displayAllQuiz();
 
     sockaddr_in serverAddr {};
     serverAddr.sin_family = AF_INET;
