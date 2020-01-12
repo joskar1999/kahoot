@@ -3,10 +3,10 @@ package main.java.com.lecimy.fx.model;
 public class Quiz {
 
     private String name;
-    private int questionsAmount;
-    private int playersAmount;
+    private String questionsAmount;
+    private String playersAmount;
 
-    public Quiz(String name, int questionsAmount, int playersAmount) {
+    public Quiz(String name, String questionsAmount, String playersAmount) {
         this.name = name;
         this.questionsAmount = questionsAmount;
         this.playersAmount = playersAmount;
@@ -20,19 +20,19 @@ public class Quiz {
         this.name = name;
     }
 
-    public int getQuestionsAmount() {
+    public String getQuestionsAmount() {
         return questionsAmount;
     }
 
-    public void setQuestionsAmount(int questionsAmount) {
+    public void setQuestionsAmount(String questionsAmount) {
         this.questionsAmount = questionsAmount;
     }
 
-    public int getPlayersAmount() {
+    public String getPlayersAmount() {
         return playersAmount;
     }
 
-    public void setPlayersAmount(int playersAmount) {
+    public void setPlayersAmount(String playersAmount) {
         this.playersAmount = playersAmount;
     }
 }

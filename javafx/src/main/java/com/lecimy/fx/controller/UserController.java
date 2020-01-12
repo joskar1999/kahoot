@@ -21,10 +21,10 @@ public class UserController implements Initializable {
 
     public UserController() {
         quizzes = FXCollections.observableArrayList();
-        quizzes.addAll(new Quiz("Alkohole", 10, 1),
-            new Quiz("Alkohole2", 10, 2),
-            new Quiz("Alkohole3", 10, 3),
-            new Quiz("Alkohole4", 10, 4));
+        quizzes.addAll(new Quiz("Alkohole", "10", "2"),
+            new Quiz("Alkohole2", "10", "2"),
+            new Quiz("Alkohole3", "10", "3"),
+            new Quiz("Alkohole4", "10", "4"));
     }
 
     @Override

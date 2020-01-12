@@ -50,6 +50,10 @@ public class ClientThread implements Runnable {
         private static final ClientThread INSTANCE = new ClientThread();
     }
 
+    public BufferedReader getReader() {
+        return reader;
+    }
+
     public void setRequestHandler(RequestHandler requestHandler) {
         this.requestHandler = requestHandler;
     }
