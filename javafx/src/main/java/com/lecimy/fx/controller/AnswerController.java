@@ -7,6 +7,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.ListView;
 import javafx.scene.text.Text;
 import main.java.com.lecimy.fx.model.Position;
+import main.java.com.lecimy.fx.utils.CountdownTimer;
 import main.java.com.lecimy.fx.viewutils.RankingListViewCell;
 
 import java.net.URL;

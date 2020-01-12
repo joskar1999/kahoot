@@ -6,16 +6,18 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 import main.java.com.lecimy.fx.Main;
 
+import java.io.File;
 import java.io.IOException;
+import java.net.URL;
 
 public class ViewUtils {
 
     public void switchScenes(String fileName) {
         Parent root = null;
         Stage primaryStage = Main.getPrimaryStage();
-        String filePath = "../fxml/" + fileName;
         try {
-            root = FXMLLoader.load(getClass().getResource(filePath));
+            URL url = new File("src/main/java/com/lecimy/fx/fxml/" + fileName).toURI().toURL();
+            root = FXMLLoader.load(url);
         } catch (IOException e) {
             e.printStackTrace();
         }
