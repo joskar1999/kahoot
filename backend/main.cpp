@@ -33,6 +33,13 @@ struct Quiz{
     int questionsAmount;
 };
 
+
+struct Game{
+    int hostDesc;
+    Quiz gameQuiz;
+};
+
+
 struct User {
     int userDesc;
     string login;
@@ -41,6 +48,8 @@ struct User {
 vector < User > Users;
 
 vector <Quiz>  allQuiz;
+
+vector <Game> allGames;
 
 string convertToString(char* a, int size)
 {
@@ -125,81 +134,65 @@ void displayAllQuiz(){
     }
 }
 
-char const* convertIntToChar(int variable){
 
-//    string tempString;
-//    stringstream charToString;
-//    charToString << variable;
-//    tempString = charToString.str();
-//    tempString = tempString + "\n";
-//    char cstr[tempString.size() + 1];
-//    strcpy(cstr, tempString.c_str());	// or pass &s[0]
-//    return cstr;
 
-    std::string s = std::to_string(variable);
-    char const *pchar = s.c_str();  //use char const* as target type
-    return pchar;
-}
+void chooseQuiz(int clientDesc){
 
-char* convertStringToChar(string variable){
-    variable = variable + "\n";
-    char cstr[variable.size() + 1];
-    strcpy(cstr, variable.c_str());	// or pass &s[0]
-    return cstr;
+//    for (auto&& [first,second] : mymap) {
+        // use first and second
+//    }
+
+    // Czekamy az gracz (HOST) wybierze Quiz ktory chce zalozyc
+    char quizChooseBuffer[100];
+    ssize_t msgsize = recv(clientDesc, quizChooseBuffer, 100, 0);
+    string selectedQuiz = convertToString(quizChooseBuffer, msgsize);
+    cout << selectedQuiz << endl;
+    for(int i = 0; i < allQuiz.size(); ++i) {
+        if(selectedQuiz == allQuiz[i].title){
+            Game game;
+            game.hostDesc = clientDesc;
+            game.gameQuiz = allQuiz[i];
+            allGames.push_back(game);
+            break;
+        }
+    }
+    write(clientDesc , "OK\n", 3);
+
+
+
+
+
+
+
+
+
+
 }
 
 void sendingQuizInformation(int clientDesc){
 
-
-
     //Wyslanie informacji o rozpoczaciu komunikacji na temat liczby Quizow i pytan
     write(clientDesc , "QUIZ_HEADERS\n", 13);
 
-    //Konwersja liczby Quizow z int na char aby moc wysylac komunikaty
-    write(clientDesc , "1\n", 2);
-
-    write(clientDesc , "chuj\n", 5);
-    write(clientDesc , "5\n", 2);
-
-//    write(clientDesc , "chuj\n", 5);
-//    write(clientDesc , "5\n", 2);
-//
-//    write(clientDesc , "chuj\n", 5);
-//    write(clientDesc , "5\n", 2);
-//
-//    write(clientDesc , "chuj\n", 5);
-//    write(clientDesc , "5\n", 2);
-//
-//    write(clientDesc , "chuj\n", 5);
 //    write(clientDesc , "5\n", 2);
 
+//    Konwersja liczby Quizow z int na char aby moc wysylac komunikaty
+    string quizAmout = "5\n";
+    write(clientDesc , quizAmout.c_str(), strlen(quizAmout.c_str()));
 
-
-
-
-//    string tempString;
-//    stringstream charToString;
-//    charToString << variable;
-//    tempString = charToString.str();
-//    tempString = tempString + "\n";
-//    char cstr[tempString.size() + 1];
-//    strcpy(cstr, tempString.c_str());	// or pass &s[0]
-
-//    char const* quizAmount = convertIntToChar(allQuiz.size());
-
-    //Wyslanie informacji o liczbie Quizow
-//    write(clientDesc , quizAmount, strlen(quizAmount));
-//
-//    for(int i=0; i < allQuiz.size(); i++){
-//        //Wysylamy informacje o tytule
+    for(int i=0; i < allQuiz.size(); i++){
+        //Wysylamy informacje o tytule
 //        char* title = convertStringToChar(allQuiz[i].title);
-//        write(clientDesc , title, strlen(title));
-//
-//        //Wysylamy  ilosc pytan
-//        char const* questionsAmount = convertIntToChar(allQuiz[i].questionsAmount);
-//        write(clientDesc , questionsAmount, strlen(questionsAmount));
-//
-//    }
+        string title = allQuiz[i].title + "\n";
+        write(clientDesc , title.c_str(), strlen(title.c_str()));
+
+        //Wysylamy  ilosc pytan
+        std::string s = std::to_string(allQuiz[i].questionsAmount);
+        s = s + "\n";
+        char const *pchar = s.c_str();  //use char const* as target type
+        write(clientDesc , pchar, strlen(pchar));
+
+    }
 
     //ilosc pytan
 
@@ -211,6 +204,7 @@ void hostClient(int clientDesc){
 
     write(clientDesc , "OK\n", 3);
     sendingQuizInformation(clientDesc);
+    chooseQuiz(clientDesc);
 
 //    sendingQuizInformation(clientDesc);
 
@@ -271,7 +265,7 @@ int main() {
     cout << "Server started" << endl;
 
     string quizFiles[5] = { "alkohole.txt", "pilka_nozna.txt",
-                         "sasiedzi_polski.txt", "stolice.txt", "wojsko.txt" };
+                            "sasiedzi_polski.txt", "stolice.txt", "wojsko.txt" };
 
     addAllQuiz(quizFiles, 5);
 
