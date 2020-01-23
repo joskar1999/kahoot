@@ -1,26 +1,44 @@
 package main.java.com.lecimy.fx.utils;
 
+import main.java.com.lecimy.fx.listener.OnCountdownFinishListener;
+import main.java.com.lecimy.fx.listener.OnSecondElapseListener;
+
 import java.util.Calendar;
-import java.util.Timer;
 
 public class CountdownTimer {
 
     private int seconds;
     private int elapsedSeconds;
-    private Timer timer;
+    private OnSecondElapseListener onSecondElapseListener;
+    private OnCountdownFinishListener onCountdownFinishListener;
+
+    public CountdownTimer() {
+    }
 
     public CountdownTimer(int seconds) {
         this.seconds = seconds;
-        new Thread(() -> {
-            long start = Calendar.getInstance().getTimeInMillis();
+    }
+
+    private Thread thread = new Thread(() -> {
+        elapsedSeconds = 0;
+        long sleepPeriod = 1000;
+        long start = Calendar.getInstance().getTimeInMillis();
+        for (int i = 0; i < seconds; i++) {
             try {
-                Thread.sleep(1000);
+                Thread.sleep(sleepPeriod);
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
+            elapsedSeconds = i + 1;
+            onSecondElapseListener.onElapse();
             long stop = Calendar.getInstance().getTimeInMillis();
-            System.out.println(stop - start);
-        }).start();
+            sleepPeriod = 1000 - (stop - start - (i + 1) * 1000);
+        }
+        onCountdownFinishListener.onFinish();
+    });
+
+    public void startTimer() {
+        thread.start();
     }
 
     public int getSeconds() {
@@ -33,5 +51,13 @@ public class CountdownTimer {
 
     public int getElapsedSeconds() {
         return elapsedSeconds;
+    }
+
+    public void setOnSecondElapseListener(OnSecondElapseListener onSecondElapseListener) {
+        this.onSecondElapseListener = onSecondElapseListener;
+    }
+
+    public void setOnCountdownFinishListener(OnCountdownFinishListener onCountdownFinishListener) {
+        this.onCountdownFinishListener = onCountdownFinishListener;
     }
 }
