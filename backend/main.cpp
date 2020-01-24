@@ -21,6 +21,8 @@ using namespace std;
 
 #define ServerPort 1280
 
+int uniqueId = 1;
+
 struct Question{
     string question;
     string a,b,c,d;
@@ -34,16 +36,19 @@ struct Quiz{
 };
 
 
-struct Game{
-    int hostDesc;
-    Quiz gameQuiz;
-};
-
-
 struct User {
     int userDesc;
     string login;
 };
+
+struct Game{
+    int hostDesc;
+    Quiz gameQuiz;
+    int id;
+    int userAmount;
+    vector <User> gameUsers;
+};
+
 
 vector < User > Users;
 
@@ -82,6 +87,7 @@ bool authentication(string username){
 
 void addAllQuiz(string quizArray[], int quizAmount){
 
+    string questionText,a,b,c,d,answer;
     for(int i=0; i<quizAmount; i++){
         ifstream quizFile;
         quizFile.open(quizArray[i]);
@@ -97,7 +103,7 @@ void addAllQuiz(string quizArray[], int quizAmount){
         quiz.title = title;
 
         for(int j=0;j < questionAmount;j++){
-            string questionText,a,b,c,d,answer;
+//            string questionText,a,b,c,d,answer;
             Question simpleQuestion;
             getline(quizFile,questionText);
             getline(quizFile,a);
@@ -152,21 +158,20 @@ void chooseQuiz(int clientDesc){
             Game game;
             game.hostDesc = clientDesc;
             game.gameQuiz = allQuiz[i];
+            game.id = uniqueId;
+            uniqueId++;
             allGames.push_back(game);
             break;
         }
     }
     write(clientDesc , "OK\n", 3);
+}
 
-
-
-
-
-
-
-
-
-
+const char * integerToChar(int temp){
+    string tempString;
+    tempString = to_string(temp) + "\n";
+    const char * tempChar = tempString.c_str();
+    return tempChar;
 }
 
 void sendingQuizInformation(int clientDesc){
@@ -174,49 +179,117 @@ void sendingQuizInformation(int clientDesc){
     //Wyslanie informacji o rozpoczaciu komunikacji na temat liczby Quizow i pytan
     write(clientDesc , "QUIZ_HEADERS\n", 13);
 
-//    write(clientDesc , "5\n", 2);
-
 //    Konwersja liczby Quizow z int na char aby moc wysylac komunikaty
-    string quizAmout = "5\n";
-    write(clientDesc , quizAmout.c_str(), strlen(quizAmout.c_str()));
+    string quizAmount;
+    string title;
+    string questionStringAmount;
+    quizAmount = to_string(allQuiz.size()) + "\n";
+//        questionStringAmount = questionStringAmount + "\n";
+    write(clientDesc , quizAmount.c_str(), strlen(quizAmount.c_str()));
+
 
     for(int i=0; i < allQuiz.size(); i++){
         //Wysylamy informacje o tytule
 //        char* title = convertStringToChar(allQuiz[i].title);
-        string title = allQuiz[i].title + "\n";
+        title = allQuiz[i].title + "\n";
         write(clientDesc , title.c_str(), strlen(title.c_str()));
 
         //Wysylamy  ilosc pytan
-        std::string s = std::to_string(allQuiz[i].questionsAmount);
-        s = s + "\n";
-        char const *pchar = s.c_str();  //use char const* as target type
-        write(clientDesc , pchar, strlen(pchar));
+        questionStringAmount = to_string(allQuiz[i].questionsAmount) + "\n";
+//        questionStringAmount = questionStringAmount + "\n";
+        char const *questionCharAmountar = questionStringAmount.c_str();  //use char const* as target type
+        write(clientDesc , questionCharAmountar, strlen(questionCharAmountar));
 
     }
+}
 
-    //ilosc pytan
+void playerClient(int clientDesc){
 
+    //Potwierdzamy ze nowy gracz zostal dodany
+    write(clientDesc , "OK\n", 3);
+    write(clientDesc,"GAMES_HEADERS\n",14);
+
+    string gameTitle;
+
+    string actuallStringGames;
+    //Wysylamy liczbe dostepnych quizow
+    actuallStringGames = to_string(allGames.size()) + "\n";
+    //questionStringAmount = questionStringAmount + "\n";
+    char const * actuallCharGames = actuallStringGames.c_str();  //use char const* as target type
+    write(clientDesc , actuallCharGames, strlen(actuallCharGames));
+    for(int i=0;i<allGames.size();i++){
+        //Wysylamy tytul dostepnego Quizu
+        gameTitle = allGames[i].gameQuiz.title + "\n";
+        write(clientDesc, gameTitle.c_str(),strlen(gameTitle.c_str()));
+
+        const char * actuallQuizQuestionAmount = integerToChar(allGames[i].gameQuiz.questionsAmount);
+        write(clientDesc , actuallQuizQuestionAmount, strlen(actuallQuizQuestionAmount));
+
+        write(clientDesc, "0\n",2);
+
+        const char * gameId = integerToChar(allGames[i].id);
+        write(clientDesc , gameId, strlen(gameId));
+    }
+
+    char messageBuffer[100];
+    ssize_t msgsize = recv(clientDesc, messageBuffer, 100, 0);
+    string message = convertToString(messageBuffer, msgsize);
+    memset(messageBuffer, 0, msgsize);
+    if(message == "JOIN"){
+        cout << "Gracz dolaczyl do gry" << endl;
+        ssize_t msgsize2 = recv(clientDesc, messageBuffer, 100, 0);
+        message = convertToString(messageBuffer, msgsize);
+        int idGame = atoi(messageBuffer);
+        memset(messageBuffer, 0, msgsize2);
+        write(clientDesc,"OK\n",3);
+        for(int i=0; i<allGames.size();i++){
+            if(allGames[i].id == idGame){
+                allGames[i].userAmount = allGames[i].userAmount + 1;
+                for(int j=0; j< Users.size();j++){
+                    if(Users[j].userDesc == clientDesc)
+                        allGames[i].gameUsers.push_back(Users[j]);
+                        break;
+                    }
+                for(int j;j<allGames[i].gameUsers.size();j++){
+                    write(allGames[i].gameUsers[j].userDesc , "NEW_USER\n", 9);
+                    }
+                write(allGames[i].hostDesc, "NEW_USER\n", 9);
+                }
+                break;
+            }
+        }
+//    ssize_t msgsize3 = recv(clientDesc, messageBuffer, 100, 0);
+//    message = convertToString(messageBuffer, msgsize3);
+//    if(message == "START"){
+//        cout
+//    }
 
 
 }
+
 
 void hostClient(int clientDesc){
 
     write(clientDesc , "OK\n", 3);
     sendingQuizInformation(clientDesc);
     chooseQuiz(clientDesc);
+    char messageBuffer[100];
+    string message;
+    ssize_t msgsize3 = recv(clientDesc, messageBuffer, 100, 0);
+    message = convertToString(messageBuffer, msgsize3);
+    if(message == "START"){
+        cout << "Gra zostalo rozpoczeta" << endl;
+    }
+
 
 //    sendingQuizInformation(clientDesc);
 
     //Wysyalanie informacji na temat quizow
-
-
-
 }
 
 void userThread(int &clientDesc){
 
-    cout << "Siemano jestem uzytkownikiem" << endl;
+    cout << "Nowy uzytkownik dodany" << endl;
 
 //    send(clientDesc, "Hello, world!\n", 13, 0);
 //    char *hello = "Hello";
@@ -243,12 +316,18 @@ void userThread(int &clientDesc){
             continue;
         }
     }
+    memset(usernameBuffer, 0, sizeof usernameBuffer);
     //Autentykacja zostala zakończona, przechodzimy do wyboru pomiędzy Admin, Gracz a Host
     char roleDecisionBuffer[100];
     ssize_t msgsize = recv(clientDesc, roleDecisionBuffer, 100, 0);
     string selectedRole = convertToString(roleDecisionBuffer, msgsize);
     if(selectedRole == "HOST"){
+        memset(roleDecisionBuffer, 0, sizeof roleDecisionBuffer);
         hostClient(clientDesc);
+    }
+    if(selectedRole == "USER"){
+        memset(roleDecisionBuffer, 0, sizeof roleDecisionBuffer);
+        playerClient(clientDesc);
     }
 }
 
