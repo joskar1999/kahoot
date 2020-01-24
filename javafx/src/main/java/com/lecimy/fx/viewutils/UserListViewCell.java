@@ -5,9 +5,18 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.control.ListCell;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.text.Text;
+import main.java.com.lecimy.fx.listener.EventListener;
+import main.java.com.lecimy.fx.listener.OnFailureJoinGameListener;
+import main.java.com.lecimy.fx.listener.OnSuccessJoinGameListener;
 import main.java.com.lecimy.fx.model.Quiz;
+import main.java.com.lecimy.fx.net.Client;
+import main.java.com.lecimy.fx.net.ClientThread;
+import main.java.com.lecimy.fx.net.handler.JoinGameHandler;
+import main.java.com.lecimy.fx.store.GameStore;
 
 import java.io.IOException;
+
+import static main.java.com.lecimy.fx.net.RequestMessages.JOIN;
 
 public class UserListViewCell extends ListCell<Quiz> {
 
@@ -24,10 +33,15 @@ public class UserListViewCell extends ListCell<Quiz> {
     private Text playersAmount;
 
     private FXMLLoader loader;
+    private Quiz quiz;
+    private ViewUtils viewUtils = new ViewUtils();
+    private OnSuccessJoinGameListener onSuccessJoinGameListener;
+    private OnFailureJoinGameListener onFailureJoinGameListener;
 
     @Override
     protected void updateItem(Quiz item, boolean empty) {
         super.updateItem(item, empty);
+        this.quiz = item;
 
         if (empty || item == null) {
             setText(null);
@@ -52,6 +66,27 @@ public class UserListViewCell extends ListCell<Quiz> {
 
     @FXML
     public void getCellClicked() {
-        System.out.println(quizName.getText());
+        System.out.println("dołączanie do gry " + quiz.getName() + quiz.getId());
+        ClientThread clientThread = ClientThread.getInstance();
+        Client client = Client.getInstance();
+        clientThread.setRequestHandler(new JoinGameHandler());
+        clientThread.setEventListeners(new EventListener[]{
+            (OnSuccessJoinGameListener) () -> {
+                GameStore.setQuiz(quiz);
+                viewUtils.switchScenes("userAwaitingPage.fxml");
+            },
+            (OnFailureJoinGameListener) () -> System.out.println("nie można dołączyć do gry")
+        });
+        client.sendMessage(JOIN);
+        client.sendMessage(String.valueOf(quiz.getId()));
+        clientThread.run();
+    }
+
+    public void setOnSuccessJoinGameListener(OnSuccessJoinGameListener onSuccessJoinGameListener) {
+        this.onSuccessJoinGameListener = onSuccessJoinGameListener;
+    }
+
+    public void setOnFailureJoinGameListener(OnFailureJoinGameListener onFailureJoinGameListener) {
+        this.onFailureJoinGameListener = onFailureJoinGameListener;
     }
 }

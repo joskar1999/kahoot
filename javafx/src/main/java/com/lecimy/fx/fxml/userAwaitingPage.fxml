@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="768.0" prefWidth="1366.0" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.java.com.lecimy.fx.controller.UserAwaitingController">
+    <children>
+        <ImageView fitHeight="783.0" fitWidth="1380.0">
+            <image>
+                <Image url="@assets/background.png" />
+            </image>
+        </ImageView>
+      <HBox layoutX="440.0" layoutY="380.0" prefHeight="72.0" prefWidth="487.0">
+         <children>
+            <Text fx:id="playersAmount" fill="#ff9900" strokeType="OUTSIDE" strokeWidth="0.0" text="Aktualna liczba graczy: 3" textAlignment="CENTER" wrappingWidth="485.388671875">
+               <font>
+                  <Font size="36.0" />
+               </font>
+            </Text>
+         </children>
+      </HBox>
+      <HBox layoutX="447.0" layoutY="218.0" prefHeight="72.0" prefWidth="487.0">
+         <children>
+            <Text fx:id="quizName" fill="#ff9900" strokeType="OUTSIDE" strokeWidth="0.0" text="Alkohole" textAlignment="CENTER" wrappingWidth="485.388671875">
+               <font>
+                  <Font size="36.0" />
+               </font>
+            </Text>
+         </children>
+      </HBox>
+      <Text fill="WHITE" layoutX="430.0" layoutY="584.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Oczekiwanie na rozpoczęcie gry">
+         <font>
+            <Font size="36.0" />
+         </font>
+      </Text>
+    </children>
+</AnchorPane>
