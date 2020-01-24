@@ -42,7 +42,7 @@ public class UserListViewCell extends ListCell<Quiz> {
                     e.printStackTrace();
                 }
             }
-            quizName.setText(item.getName());
+            quizName.setText(item.getName() + item.getId());
             questionsAmount.setText(item.getQuestionsAmount() + " pytań");
             playersAmount.setText("gracze: " + item.getPlayersAmount());
             setText(null);

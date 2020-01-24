@@ -5,7 +5,13 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.control.ListCell;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.text.Text;
+import main.java.com.lecimy.fx.listener.EventListener;
+import main.java.com.lecimy.fx.listener.OnFailureGameInitializationListener;
+import main.java.com.lecimy.fx.listener.OnSuccessGameInitializationListener;
 import main.java.com.lecimy.fx.model.Quiz;
+import main.java.com.lecimy.fx.net.Client;
+import main.java.com.lecimy.fx.net.ClientThread;
+import main.java.com.lecimy.fx.net.handler.GameInitializationHandler;
 
 import java.io.IOException;
 
@@ -21,10 +27,15 @@ public class HostListViewCell extends ListCell<Quiz> {
     private Text questionsAmount;
 
     private FXMLLoader loader;
+    private Quiz quiz;
+    private ViewUtils viewUtils = new ViewUtils();
+    private OnSuccessGameInitializationListener onSuccessGameInitializationListener;
+    private OnFailureGameInitializationListener onFailureGameInitializationListener;
 
     @Override
     protected void updateItem(Quiz item, boolean empty) {
         super.updateItem(item, empty);
+        this.quiz = item;
 
         if (empty || item == null) {
             setText(null);
@@ -48,6 +59,22 @@ public class HostListViewCell extends ListCell<Quiz> {
 
     @FXML
     public void getCellClicked() {
-        System.out.println(quizName.getText());
+        ClientThread clientThread = ClientThread.getInstance();
+        clientThread.setRequestHandler(new GameInitializationHandler());
+        clientThread.setEventListeners(new EventListener[]{
+            (OnSuccessGameInitializationListener) () -> viewUtils.switchScenes("awaitingPage.fxml"),
+            (OnFailureGameInitializationListener) () -> System.out.println("nie można utworzyć gry")
+        });
+        Client.getInstance().sendMessage(quiz.getName());
+        clientThread.run();
+
+    }
+
+    public void setOnSuccessGameInitializationListener(OnSuccessGameInitializationListener onSuccessGameInitializationListener) {
+        this.onSuccessGameInitializationListener = onSuccessGameInitializationListener;
+    }
+
+    public void setOnFailureGameInitializationListener(OnFailureGameInitializationListener onFailureGameInitializationListener) {
+        this.onFailureGameInitializationListener = onFailureGameInitializationListener;
     }
 }

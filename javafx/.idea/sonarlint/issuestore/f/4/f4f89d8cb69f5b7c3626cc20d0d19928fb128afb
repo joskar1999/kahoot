@@ -1,7 +1,3 @@
 
-Fsquid:S1148"#Use a logger to log this exception.(€ΙΤ…ύÿÿÿÿ8ΎΘαϊό-
-[
-squid:S106B"9Replace this use of System.out or System.err by a logger.(Λ«•‰όÿÿÿÿ8”Οϋό-
 dsquid:S2142"FEither re-interrupt this method or rethrow the "InterruptedException".(δ Ή€8ΎΘαϊό-
-[
-squid:S106C"9Replace this use of System.out or System.err by a logger.(·±ΨΧύÿÿÿÿ8½ψ™ϋό-
+Fsquid:S1148"#Use a logger to log this exception.(€ΙΤ…ύÿÿÿÿ8ΎΘαϊό-
