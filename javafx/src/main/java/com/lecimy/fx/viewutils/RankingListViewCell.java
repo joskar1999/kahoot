@@ -1,13 +1,15 @@
-package main.java.com.lecimy.fx.viewutils;
+package com.lecimy.fx.viewutils;
 
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.ListCell;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.text.Text;
-import main.java.com.lecimy.fx.model.Position;
+import com.lecimy.fx.model.Position;
 
+import java.io.File;
 import java.io.IOException;
+import java.net.URL;
 
 public class RankingListViewCell extends ListCell<Position> {
 
@@ -36,11 +38,6 @@ public class RankingListViewCell extends ListCell<Position> {
             if (loader == null) {
                 loader = new FXMLLoader(getClass().getResource("../fxml/rankingListViewCell.fxml"));
                 loader.setController(this);
-                try {
-                    loader.load();
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
             }
             place.setText("Miejsce: " + item.getPlace() + ", ");
             nick.setText(item.getName() + ", ");

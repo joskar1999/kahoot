@@ -1,7 +1,7 @@
-package main.java.com.lecimy.fx.net;
+package com.lecimy.fx.net;
 
-import main.java.com.lecimy.fx.listener.EventListener;
-import main.java.com.lecimy.fx.net.handler.RequestHandler;
+import com.lecimy.fx.listener.EventListener;
+import com.lecimy.fx.net.handler.RequestHandler;
 
 import java.io.BufferedReader;
 import java.io.IOException;

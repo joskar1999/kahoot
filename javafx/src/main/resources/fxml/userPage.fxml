@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="768.0" prefWidth="1366.0" xmlns="http://javafx.com/javafx/" xmlns:fx="http://javafx.com/fxml/" fx:controller="com.lecimy.fx.controller.UserController">
+    <children>
+        <ImageView fitHeight="783.0" fitWidth="1380.0">
+            <image>
+                <Image url="@assets/background.png" />
+            </image>
+        </ImageView>
+        <ListView fx:id="listView" layoutX="514.0" layoutY="192.0" prefHeight="542.0" prefWidth="817.0" style="-fx-background-color: #000000;" />
+        <ImageView fitHeight="219.0" fitWidth="317.0" layoutX="57.0" layoutY="192.0" pickOnBounds="true" preserveRatio="true">
+            <image>
+                <Image url="@assets/Group%2031.png" />
+            </image>
+        </ImageView>
+    </children>
+</AnchorPane>

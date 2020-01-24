@@ -1,18 +1,18 @@
-package main.java.com.lecimy.fx.net.handler;
+package com.lecimy.fx.net.handler;
 
-import main.java.com.lecimy.fx.listener.EventListener;
-import main.java.com.lecimy.fx.listener.OnFailureQuizHeadersReceiveListener;
-import main.java.com.lecimy.fx.listener.OnSuccessQuizHeadersReceiveListener;
-import main.java.com.lecimy.fx.model.Quiz;
-import main.java.com.lecimy.fx.net.Client;
-import main.java.com.lecimy.fx.net.ClientThread;
+import com.lecimy.fx.listener.EventListener;
+import com.lecimy.fx.listener.OnFailureQuizHeadersReceiveListener;
+import com.lecimy.fx.listener.OnSuccessQuizHeadersReceiveListener;
+import com.lecimy.fx.model.Quiz;
+import com.lecimy.fx.net.Client;
+import com.lecimy.fx.net.ClientThread;
 
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-import static main.java.com.lecimy.fx.net.ResponseMessages.QUIZ_HEADERS;
+import static com.lecimy.fx.net.ResponseMessages.QUIZ_HEADERS;
 
 public class HostDataFetchHandler implements RequestHandler {
 

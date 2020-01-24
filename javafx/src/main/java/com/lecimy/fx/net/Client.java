@@ -1,4 +1,4 @@
-package main.java.com.lecimy.fx.net;
+package com.lecimy.fx.net;
 
 import java.io.DataOutputStream;
 import java.io.IOException;

@@ -1,10 +1,10 @@
-package main.java.com.lecimy.fx.net.handler;
+package com.lecimy.fx.net.handler;
 
-import main.java.com.lecimy.fx.listener.EventListener;
-import main.java.com.lecimy.fx.listener.OnFailureNickCreationListener;
-import main.java.com.lecimy.fx.listener.OnSuccessNickCreationListener;
+import com.lecimy.fx.listener.EventListener;
+import com.lecimy.fx.listener.OnFailureNickCreationListener;
+import com.lecimy.fx.listener.OnSuccessNickCreationListener;
 
-import static main.java.com.lecimy.fx.net.ResponseMessages.OK;
+import static com.lecimy.fx.net.ResponseMessages.OK;
 
 public class NickInitializationHandler implements RequestHandler {
 

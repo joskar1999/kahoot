@@ -1,4 +1,4 @@
-package main.java.com.lecimy.fx.controller;
+package com.lecimy.fx.controller;
 
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;

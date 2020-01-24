@@ -1,13 +1,16 @@
-package main.java.com.lecimy.fx.viewutils;
+package com.lecimy.fx.viewutils;
 
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
 import javafx.scene.control.ListCell;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.text.Text;
-import main.java.com.lecimy.fx.model.Quiz;
+import com.lecimy.fx.model.Quiz;
 
+import java.io.File;
 import java.io.IOException;
+import java.net.URL;
 
 public class UserListViewCell extends ListCell<Quiz> {
 
@@ -34,13 +37,8 @@ public class UserListViewCell extends ListCell<Quiz> {
             setGraphic(null);
         } else {
             if (loader == null) {
-                loader = new FXMLLoader(getClass().getResource("../fxml/userListViewCell.fxml"));
+                loader = new FXMLLoader(getClass().getResource("/fxml/userListViewCell.fxml"));
                 loader.setController(this);
-                try {
-                    loader.load();
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
             }
             quizName.setText(item.getName());
             questionsAmount.setText(item.getQuestionsAmount() + " pytań");

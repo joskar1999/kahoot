@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="768.0" prefWidth="1366.0" xmlns="http://javafx.com/javafx/" xmlns:fx="http://javafx.com/fxml/" fx:controller="com.lecimy.fx.controller.InitialPageController">
+   <children>
+      <ImageView fitHeight="785.0" fitWidth="1381.0">
+         <image>
+            <Image url="@assets/background.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="53.0" fitWidth="412.0" layoutX="485.0" layoutY="179.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@assets/Podaj%20IP,%20port%20oraz%20nick%20aby%20dołączyć.png" />
+         </image>
+      </ImageView>
+      <TextField fx:id="ipTextField" layoutX="485.0" layoutY="252.0" prefHeight="53.0" prefWidth="412.0" promptText="IP..." style="-fx-background-color: #1b1b1b;">
+         <font>
+            <Font name="Arial" size="18.0" />
+         </font>
+      </TextField>
+      <TextField fx:id="portTextField" layoutX="485.0" layoutY="340.0" prefHeight="53.0" prefWidth="412.0" promptText="Port..." style="-fx-background-color: #1b1b1b;">
+         <font>
+            <Font name="Arial" size="18.0" />
+         </font>
+      </TextField>
+      <ImageView fx:id="loginButton" fitHeight="53.0" fitWidth="426.0" layoutX="485.0" layoutY="539.0" onMouseClicked="#loginToKahoot" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@assets/Group%2052.png" />
+         </image>
+      </ImageView>
+      <TextField fx:id="nickTextField" layoutX="485.0" layoutY="430.0" prefHeight="53.0" prefWidth="412.0" promptText="Nick..." style="-fx-background-color: #1b1b1b;">
+         <font>
+            <Font name="Arial" size="18.0" />
+         </font>
+      </TextField>
+   </children>
+</AnchorPane>

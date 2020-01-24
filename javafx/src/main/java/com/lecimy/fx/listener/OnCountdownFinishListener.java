@@ -1,4 +1,4 @@
-package main.java.com.lecimy.fx.listener;
+package com.lecimy.fx.listener;
 
 @FunctionalInterface
 public interface OnCountdownFinishListener {

@@ -1,17 +1,17 @@
-package main.java.com.lecimy.fx.controller;
+package com.lecimy.fx.controller;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.ListView;
-import main.java.com.lecimy.fx.listener.EventListener;
-import main.java.com.lecimy.fx.listener.OnFailureQuizHeadersReceiveListener;
-import main.java.com.lecimy.fx.listener.OnSuccessQuizHeadersReceiveListener;
-import main.java.com.lecimy.fx.model.Quiz;
-import main.java.com.lecimy.fx.net.ClientThread;
-import main.java.com.lecimy.fx.net.handler.HostDataFetchHandler;
-import main.java.com.lecimy.fx.viewutils.HostListViewCell;
+import com.lecimy.fx.listener.EventListener;
+import com.lecimy.fx.listener.OnFailureQuizHeadersReceiveListener;
+import com.lecimy.fx.listener.OnSuccessQuizHeadersReceiveListener;
+import com.lecimy.fx.model.Quiz;
+import com.lecimy.fx.net.ClientThread;
+import com.lecimy.fx.net.handler.HostDataFetchHandler;
+import com.lecimy.fx.viewutils.HostListViewCell;
 
 import java.net.URL;
 import java.util.ResourceBundle;

@@ -1,6 +1,6 @@
-package main.java.com.lecimy.fx.listener;
+package com.lecimy.fx.listener;
 
-import main.java.com.lecimy.fx.model.Quiz;
+import com.lecimy.fx.model.Quiz;
 
 import java.util.List;
 

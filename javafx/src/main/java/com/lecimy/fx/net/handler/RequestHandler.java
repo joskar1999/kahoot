@@ -1,6 +1,6 @@
-package main.java.com.lecimy.fx.net.handler;
+package com.lecimy.fx.net.handler;
 
-import main.java.com.lecimy.fx.listener.EventListener;
+import com.lecimy.fx.listener.EventListener;
 
 @FunctionalInterface
 public interface RequestHandler {

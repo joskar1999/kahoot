@@ -1,4 +1,4 @@
-package main.java.com.lecimy.fx.model;
+package com.lecimy.fx.model;
 
 public class Position {
 

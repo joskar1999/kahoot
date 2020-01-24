@@ -1,10 +1,10 @@
-package main.java.com.lecimy.fx.viewutils;
+package com.lecimy.fx.viewutils;
 
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
-import main.java.com.lecimy.fx.Main;
+import com.lecimy.fx.Main;
 
 import java.io.File;
 import java.io.IOException;
@@ -16,8 +16,7 @@ public class ViewUtils {
         Parent root = null;
         Stage primaryStage = Main.getPrimaryStage();
         try {
-            URL url = new File("src/main/java/com/lecimy/fx/fxml/" + fileName).toURI().toURL();
-            root = FXMLLoader.load(url);
+            root = FXMLLoader.load(getClass().getResource("/fxml/" + fileName));
         } catch (IOException e) {
             e.printStackTrace();
         }

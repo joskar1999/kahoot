@@ -1,7 +1,7 @@
-package main.java.com.lecimy.fx.utils;
+package com.lecimy.fx.utils;
 
-import main.java.com.lecimy.fx.listener.OnCountdownFinishListener;
-import main.java.com.lecimy.fx.listener.OnSecondElapseListener;
+import com.lecimy.fx.listener.OnCountdownFinishListener;
+import com.lecimy.fx.listener.OnSecondElapseListener;
 
 import java.util.Calendar;
 

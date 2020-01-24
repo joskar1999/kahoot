@@ -1,4 +1,4 @@
-package main.java.com.lecimy.fx.controller;
+package com.lecimy.fx.controller;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -6,9 +6,9 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.ListView;
 import javafx.scene.text.Text;
-import main.java.com.lecimy.fx.model.Position;
-import main.java.com.lecimy.fx.utils.CountdownTimer;
-import main.java.com.lecimy.fx.viewutils.RankingListViewCell;
+import com.lecimy.fx.model.Position;
+import com.lecimy.fx.utils.CountdownTimer;
+import com.lecimy.fx.viewutils.RankingListViewCell;
 
 import java.net.URL;
 import java.util.ResourceBundle;

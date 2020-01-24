@@ -1,14 +1,14 @@
-package main.java.com.lecimy.fx.controller;
+package com.lecimy.fx.controller;
 
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import main.java.com.lecimy.fx.listener.EventListener;
-import main.java.com.lecimy.fx.listener.OnFailureHostCreationListener;
-import main.java.com.lecimy.fx.listener.OnSuccessHostCreationListener;
-import main.java.com.lecimy.fx.net.Client;
-import main.java.com.lecimy.fx.net.ClientThread;
-import main.java.com.lecimy.fx.net.handler.HostInitializationHandler;
-import main.java.com.lecimy.fx.viewutils.ViewUtils;
+import com.lecimy.fx.listener.EventListener;
+import com.lecimy.fx.listener.OnFailureHostCreationListener;
+import com.lecimy.fx.listener.OnSuccessHostCreationListener;
+import com.lecimy.fx.net.Client;
+import com.lecimy.fx.net.ClientThread;
+import com.lecimy.fx.net.handler.HostInitializationHandler;
+import com.lecimy.fx.viewutils.ViewUtils;
 
 import java.net.URL;
 import java.util.ResourceBundle;
