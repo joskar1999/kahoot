@@ -54,6 +54,11 @@ public class UserListViewCell extends ListCell<Quiz> {
             if (loader == null) {
                 loader = new FXMLLoader(getClass().getResource("/fxml/userListViewCell.fxml"));
                 loader.setController(this);
+                try {
+                    loader.load();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
             }
             quizName.setText(item.getName() + item.getId());
             questionsAmount.setText(item.getQuestionsAmount() + " pytań");

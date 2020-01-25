@@ -36,7 +36,7 @@ public class RankingListViewCell extends ListCell<Position> {
             setGraphic(null);
         } else {
             if (loader == null) {
-                loader = new FXMLLoader(getClass().getResource("../fxml/rankingListViewCell.fxml"));
+                loader = new FXMLLoader(getClass().getResource("/fxml/rankingListViewCell.fxml"));
                 loader.setController(this);
             }
             place.setText("Miejsce: " + item.getPlace() + ", ");
