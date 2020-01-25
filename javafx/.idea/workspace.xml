@@ -2,9 +2,14 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="4d8342fe-4751-48ef-92b3-aa4306440feb" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/issuestore/0/a/0aad5051943fd627b5d61f5a5fdd558ee8758956" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/sonarlint/issuestore/0/a/0aad5051943fd627b5d61f5a5fdd558ee8758956" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/issuestore/2/6/26768cc99accab480fbbd8d1d559a760cbd855b3" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/sonarlint/issuestore/2/6/26768cc99accab480fbbd8d1d559a760cbd855b3" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/issuestore/c/9/c931d6c7fa8cf5b434f1bafb198077c53809f932" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/sonarlint/issuestore/c/9/c931d6c7fa8cf5b434f1bafb198077c53809f932" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/issuestore/index.pb" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/sonarlint/issuestore/index.pb" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/lecimy/fx/controller/UserAwaitingController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/lecimy/fx/controller/UserAwaitingController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/lecimy/fx/net/RequestMessages.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/lecimy/fx/net/RequestMessages.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/lecimy/fx/viewutils/UserListViewCell.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/lecimy/fx/viewutils/UserListViewCell.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/lecimy/fx/net/ResponseMessages.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/lecimy/fx/net/ResponseMessages.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -30,9 +35,9 @@
       <list>
         <option value="CSS File" />
         <option value="Enum" />
-        <option value="Interface" />
         <option value="FxmlFile" />
         <option value="Class" />
+        <option value="Interface" />
       </list>
     </option>
   </component>
@@ -99,6 +104,10 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <list>
+      <item itemvalue="Application.CountdownTimer" />
+      <item itemvalue="Application.Main" />
+    </list>
     <recent_temporary>
       <list>
         <item itemvalue="Application.Main" />
@@ -140,6 +149,8 @@
       <workItem from="1579795283905" duration="8551000" />
       <workItem from="1579806530884" duration="598000" />
       <workItem from="1579884632871" duration="10814000" />
+      <workItem from="1579900119830" duration="271000" />
+      <workItem from="1579948997415" duration="7602000" />
     </task>
     <servers />
   </component>
@@ -151,10 +162,10 @@
       <screen x="0" y="0" width="2560" height="1040" />
     </state>
     <state x="101" y="179" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.2560.1040@0.0.2560.1040" timestamp="1578237821453" />
-    <state x="271" y="177" key="#com.intellij.ide.util.MemberChooser" timestamp="1579897385279">
+    <state x="271" y="177" key="#com.intellij.ide.util.MemberChooser" timestamp="1579980920003">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="271" y="177" key="#com.intellij.ide.util.MemberChooser/0.0.1536.824@0.0.1536.824" timestamp="1579897385279" />
+    <state x="271" y="177" key="#com.intellij.ide.util.MemberChooser/0.0.1536.824@0.0.1536.824" timestamp="1579980920003" />
     <state x="339" y="224" key="#com.intellij.ide.util.MemberChooser/0.0.1920.1040@0.0.1920.1040" timestamp="1578503589250" />
     <state x="452" y="224" key="#com.intellij.ide.util.MemberChooser/0.0.2560.1040@0.0.2560.1040" timestamp="1578249872832" />
     <state x="443" y="0" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog" timestamp="1579732292200">
@@ -177,28 +188,28 @@
       <screen x="0" y="0" width="2560" height="1040" />
     </state>
     <state x="420" y="279" key="FileChooserDialogImpl/0.0.2560.1040@0.0.2560.1040" timestamp="1578228653253" />
-    <state width="1493" height="249" key="GridCell.Tab.0.bottom" timestamp="1579899282656">
+    <state width="1493" height="278" key="GridCell.Tab.0.bottom" timestamp="1579981222685">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="249" key="GridCell.Tab.0.bottom/0.0.1536.824@0.0.1536.824" timestamp="1579899282656" />
+    <state width="1493" height="278" key="GridCell.Tab.0.bottom/0.0.1536.824@0.0.1536.824" timestamp="1579981222685" />
     <state width="1877" height="190" key="GridCell.Tab.0.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1578503733114" />
     <state width="1248" height="260" key="GridCell.Tab.0.bottom/0.0.2560.1040@0.0.2560.1040" timestamp="1578251026457" />
-    <state width="1493" height="249" key="GridCell.Tab.0.center" timestamp="1579899282656">
+    <state width="1493" height="278" key="GridCell.Tab.0.center" timestamp="1579981222685">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="249" key="GridCell.Tab.0.center/0.0.1536.824@0.0.1536.824" timestamp="1579899282656" />
+    <state width="1493" height="278" key="GridCell.Tab.0.center/0.0.1536.824@0.0.1536.824" timestamp="1579981222685" />
     <state width="1877" height="190" key="GridCell.Tab.0.center/0.0.1920.1040@0.0.1920.1040" timestamp="1578503733113" />
     <state width="1248" height="260" key="GridCell.Tab.0.center/0.0.2560.1040@0.0.2560.1040" timestamp="1578251026457" />
-    <state width="1493" height="249" key="GridCell.Tab.0.left" timestamp="1579899282656">
+    <state width="1493" height="278" key="GridCell.Tab.0.left" timestamp="1579981222685">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="249" key="GridCell.Tab.0.left/0.0.1536.824@0.0.1536.824" timestamp="1579899282656" />
+    <state width="1493" height="278" key="GridCell.Tab.0.left/0.0.1536.824@0.0.1536.824" timestamp="1579981222685" />
     <state width="1877" height="190" key="GridCell.Tab.0.left/0.0.1920.1040@0.0.1920.1040" timestamp="1578503733113" />
     <state width="1248" height="260" key="GridCell.Tab.0.left/0.0.2560.1040@0.0.2560.1040" timestamp="1578251026456" />
-    <state width="1493" height="249" key="GridCell.Tab.0.right" timestamp="1579899282656">
+    <state width="1493" height="278" key="GridCell.Tab.0.right" timestamp="1579981222685">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="249" key="GridCell.Tab.0.right/0.0.1536.824@0.0.1536.824" timestamp="1579899282656" />
+    <state width="1493" height="278" key="GridCell.Tab.0.right/0.0.1536.824@0.0.1536.824" timestamp="1579981222685" />
     <state width="1877" height="190" key="GridCell.Tab.0.right/0.0.1920.1040@0.0.1920.1040" timestamp="1578503733113" />
     <state width="1248" height="260" key="GridCell.Tab.0.right/0.0.2560.1040@0.0.2560.1040" timestamp="1578251026457" />
     <state width="1493" height="239" key="GridCell.Tab.1.bottom" timestamp="1579806468491">
@@ -229,6 +240,10 @@
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state width="498" height="446" key="SwitcherDM/0.0.1536.824@0.0.1536.824" timestamp="1578512972488" />
+    <state x="577" y="325" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1579955190375">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="577" y="325" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.1536.824@0.0.1536.824" timestamp="1579955190375" />
     <state x="499" y="158" key="extract.method.dialog" timestamp="1578671719073">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
@@ -246,10 +261,10 @@
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="511" y="2" key="refactoring.ChangeSignatureDialog/0.0.1536.824@0.0.1536.824" timestamp="1578851744503" />
-    <state x="186" y="182" width="672" height="538" key="search.everywhere.popup" timestamp="1579897209743">
+    <state x="186" y="182" width="672" height="538" key="search.everywhere.popup" timestamp="1579980995367">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="186" y="182" width="672" height="538" key="search.everywhere.popup/0.0.1536.824@0.0.1536.824" timestamp="1579897209743" />
+    <state x="186" y="182" width="672" height="538" key="search.everywhere.popup/0.0.1536.824@0.0.1536.824" timestamp="1579980995367" />
     <state x="233" y="230" width="672" height="678" key="search.everywhere.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1578503384555" />
     <state x="310" y="230" width="672" height="678" key="search.everywhere.popup/0.0.2560.1040@0.0.2560.1040" timestamp="1578250441179" />
   </component>

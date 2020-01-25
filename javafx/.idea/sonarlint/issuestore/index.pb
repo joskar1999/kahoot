@@ -61,3 +61,5 @@ k
 ;src/main/java/com/lecimy/fx/viewutils/UserListViewCell.java,0\a\0aad5051943fd627b5d61f5a5fdd558ee8758956
 v
 Fsrc/main/java/com/lecimy/fx/net/handler/GameInitializationHandler.java,9\8\98d8e40f871fde85de6766d33957821ce155c004
+j
+:src/main/java/com/lecimy/fx/controller/UserController.java,2\6\26768cc99accab480fbbd8d1d559a760cbd855b3
