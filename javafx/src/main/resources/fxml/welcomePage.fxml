@@ -5,7 +5,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="768.0"
-            prefWidth="1366.0" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/"
+            prefWidth="1366.0" xmlns="http://javafx.com/javafx/" xmlns:fx="http://javafx.com/fxml/"
             fx:controller="com.lecimy.fx.controller.WelcomeController">
     <children>
         <ImageView fitHeight="782.0" fitWidth="1380.0">

@@ -29,22 +29,16 @@
                 <configuration>
                     <archive>
                         <manifest>
+                            <addClasspath>true</addClasspath>
                             <mainClass>com.lecimy.fx.Main</mainClass>
                         </manifest>
+                        <manifestEntries>
+                            <Class-Path>.</Class-Path>
+                        </manifestEntries>
                     </archive>
                 </configuration>
             </plugin>
         </plugins>
-
-        <!--<resources>-->
-            <!--<resource>-->
-                <!--<filtering>false</filtering>-->
-                <!--<directory>src/main/java</directory>-->
-                <!--<includes>-->
-                    <!--<include>**/*.fxml</include>-->
-                <!--</includes>-->
-            <!--</resource>-->
-        <!--</resources>-->
     </build>
 
 </project>

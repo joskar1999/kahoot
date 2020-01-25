@@ -13,9 +13,9 @@
             </image>
         </ImageView>
         <ImageView fitHeight="215.0" fitWidth="458.0" layoutX="56.0" layoutY="192.0" pickOnBounds="true" preserveRatio="true">
-            <image>
-                <Image url="@assets/Group%2023.png" />
-            </image>
+<!--            <image>-->
+<!--                <Image url="@assets/Group%2023.png" />-->
+<!--            </image>-->
         </ImageView>
         <ListView fx:id="listView" layoutX="514.0" layoutY="192.0" prefHeight="542.0" prefWidth="817.0" style="-fx-background-color: #000000;" />
     </children>

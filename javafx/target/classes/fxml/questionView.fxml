@@ -42,22 +42,22 @@
       </Text>
       <ImageView fitHeight="93.0" fitWidth="465.0" layoutX="186.0" layoutY="446.0" onMouseClicked="#aClicked" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@assets/Rectangle%2023.png" />
+            <Image url="@assets/Rectangle23.png" />
          </image>
       </ImageView>
       <ImageView fitHeight="104.0" fitWidth="425.0" layoutX="749.0" layoutY="586.0" onMouseClicked="#dClicked" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@assets/Rectangle%2023.png" />
+            <Image url="@assets/Rectangle23.png" />
          </image>
       </ImageView>
       <ImageView fitHeight="104.0" fitWidth="425.0" layoutX="185.0" layoutY="586.0" onMouseClicked="#cClicked" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@assets/Rectangle%2023.png" />
+            <Image url="@assets/Rectangle23.png" />
          </image>
       </ImageView>
       <ImageView fitHeight="104.0" fitWidth="425.0" layoutX="749.0" layoutY="446.0" onMouseClicked="#bClicked" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@assets/Rectangle%2023.png" />
+            <Image url="@assets/Rectangle23.png" />
          </image>
       </ImageView>
       <Text fx:id="answerA" fill="WHITE" layoutX="231.0" layoutY="501.0" onMouseClicked="#aClicked" strokeType="OUTSIDE" strokeWidth="0.0" text="A: 350ml">

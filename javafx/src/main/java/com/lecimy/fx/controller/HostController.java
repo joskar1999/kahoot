@@ -24,6 +24,7 @@ public class HostController implements Initializable {
     private ObservableList<Quiz> quizzes;
 
     public HostController() {
+        System.out.println("++++++++++++++++hostPage+++++++++++++++++++++++++++");
         quizzes = FXCollections.observableArrayList();
         ClientThread clientThread = ClientThread.getInstance();
         clientThread.setRequestHandler(new HostDataFetchHandler());
@@ -32,12 +33,14 @@ public class HostController implements Initializable {
             (OnFailureQuizHeadersReceiveListener) () -> System.out.println("Nie udało się odebrać headerów quizów")
         });
         clientThread.run();
+        System.out.println("chujjjjjjjj");
     }
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        System.out.println("dfsdfdfs----------------------------------");
         listView.setItems(quizzes);
         listView.setCellFactory(e -> new HostListViewCell());
-        listView.getStylesheets().add(getClass().getResource("../css/styles.css").toExternalForm());
+        listView.getStylesheets().add(getClass().getResource("/css/styles.css").toExternalForm());
     }
 }

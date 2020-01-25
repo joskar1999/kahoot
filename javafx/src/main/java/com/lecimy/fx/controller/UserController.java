@@ -31,6 +31,6 @@ public class UserController implements Initializable {
     public void initialize(URL location, ResourceBundle resources) {
         listView.setItems(quizzes);
         listView.setCellFactory(e -> new UserListViewCell());
-        listView.getStylesheets().add(getClass().getResource("../css/styles.css").toExternalForm());
+        listView.getStylesheets().add(getClass().getResource("/css/styles.css").toExternalForm());
     }
 }

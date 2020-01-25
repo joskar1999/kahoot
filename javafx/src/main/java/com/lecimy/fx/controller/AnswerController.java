@@ -40,6 +40,6 @@ public class AnswerController implements Initializable {
     public void initialize(URL location, ResourceBundle resources) {
         listView.setItems(ranking);
         listView.setCellFactory(e -> new RankingListViewCell());
-        listView.getStylesheets().add(getClass().getResource("../css/styles.css").toExternalForm());
+        listView.getStylesheets().add(getClass().getResource("/css/styles.css").toExternalForm());
     }
 }

@@ -27,7 +27,7 @@ public class HostListViewCell extends ListCell<Quiz> {
     @Override
     protected void updateItem(Quiz item, boolean empty) {
         super.updateItem(item, empty);
-
+        System.out.println("mamy to");
         if (empty || item == null) {
             setText(null);
             setGraphic(null);
@@ -35,6 +35,11 @@ public class HostListViewCell extends ListCell<Quiz> {
             if (loader == null) {
                 loader = new FXMLLoader(getClass().getResource("/fxml/hostListViewCell.fxml"));
                 loader.setController(this);
+                try {
+                    loader.load();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
             }
             quizName.setText(item.getName());
             questionsAmount.setText(item.getQuestionsAmount() + " pytań");
