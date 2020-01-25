@@ -1,5 +1,7 @@
 package com.lecimy.fx.net;
 
+import lombok.Data;
+
 import java.io.DataOutputStream;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -7,6 +9,7 @@ import java.net.Socket;
 import java.nio.ByteBuffer;
 import java.nio.ByteOrder;
 
+@Data
 public class Client {
 
     private String ip;
@@ -46,34 +49,6 @@ public class Client {
         ByteBuffer buffer = ByteBuffer.allocate(4);
         byte[] bytes = buffer.order(ByteOrder.LITTLE_ENDIAN).putInt(length).array();
         outputStream.write(bytes);
-    }
-
-    public String getIp() {
-        return ip;
-    }
-
-    public void setIp(String ip) {
-        this.ip = ip;
-    }
-
-    public int getPort() {
-        return port;
-    }
-
-    public void setPort(int port) {
-        this.port = port;
-    }
-
-    public String getNick() {
-        return nick;
-    }
-
-    public void setNick(String nick) {
-        this.nick = nick;
-    }
-
-    public Socket getSocket() {
-        return socket;
     }
 
     private static class ClientSingleton {

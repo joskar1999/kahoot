@@ -16,10 +16,7 @@ public class ViewUtils {
         Parent root = null;
         Stage primaryStage = Main.getPrimaryStage();
         try {
-            System.out.println("-----------------------------------------------------");
-            System.out.println("/fxml/" + fileName);
               root = FXMLLoader.load(getClass().getResource("/fxml/" + fileName));
-            System.out.println(root);
         } catch (IOException e) {
             e.printStackTrace();
         }

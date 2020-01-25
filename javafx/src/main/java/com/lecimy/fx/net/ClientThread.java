@@ -2,11 +2,13 @@ package com.lecimy.fx.net;
 
 import com.lecimy.fx.listener.EventListener;
 import com.lecimy.fx.net.handler.RequestHandler;
+import lombok.Data;
 
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 
+@Data
 public class ClientThread implements Runnable {
 
     private Client client;
@@ -48,17 +50,5 @@ public class ClientThread implements Runnable {
 
     private static class ClientThreadSingleton {
         private static final ClientThread INSTANCE = new ClientThread();
-    }
-
-    public BufferedReader getReader() {
-        return reader;
-    }
-
-    public void setRequestHandler(RequestHandler requestHandler) {
-        this.requestHandler = requestHandler;
-    }
-
-    public void setEventListeners(EventListener[] eventListeners) {
-        this.eventListeners = eventListeners;
     }
 }

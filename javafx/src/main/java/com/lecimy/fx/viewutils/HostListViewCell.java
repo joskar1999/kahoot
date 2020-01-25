@@ -27,7 +27,6 @@ public class HostListViewCell extends ListCell<Quiz> {
     @Override
     protected void updateItem(Quiz item, boolean empty) {
         super.updateItem(item, empty);
-        System.out.println("mamy to");
         if (empty || item == null) {
             setText(null);
             setGraphic(null);

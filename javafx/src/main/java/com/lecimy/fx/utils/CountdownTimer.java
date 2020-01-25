@@ -2,18 +2,19 @@ package com.lecimy.fx.utils;
 
 import com.lecimy.fx.listener.OnCountdownFinishListener;
 import com.lecimy.fx.listener.OnSecondElapseListener;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import java.util.Calendar;
 
+@Data
+@NoArgsConstructor
 public class CountdownTimer {
 
     private int seconds;
     private int elapsedSeconds;
     private OnSecondElapseListener onSecondElapseListener;
     private OnCountdownFinishListener onCountdownFinishListener;
-
-    public CountdownTimer() {
-    }
 
     public CountdownTimer(int seconds) {
         this.seconds = seconds;
@@ -39,25 +40,5 @@ public class CountdownTimer {
 
     public void startTimer() {
         thread.start();
-    }
-
-    public int getSeconds() {
-        return seconds;
-    }
-
-    public void setSeconds(int seconds) {
-        this.seconds = seconds;
-    }
-
-    public int getElapsedSeconds() {
-        return elapsedSeconds;
-    }
-
-    public void setOnSecondElapseListener(OnSecondElapseListener onSecondElapseListener) {
-        this.onSecondElapseListener = onSecondElapseListener;
-    }
-
-    public void setOnCountdownFinishListener(OnCountdownFinishListener onCountdownFinishListener) {
-        this.onCountdownFinishListener = onCountdownFinishListener;
     }
 }
