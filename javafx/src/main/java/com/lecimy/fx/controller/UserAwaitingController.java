@@ -1,5 +1,8 @@
 package com.lecimy.fx.controller;
 
+import com.lecimy.fx.Main;
+import com.lecimy.fx.viewutils.ViewUtils;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.text.Text;
@@ -11,6 +14,8 @@ import com.lecimy.fx.model.Quiz;
 import com.lecimy.fx.net.ClientThread;
 import com.lecimy.fx.net.handler.UserGameAwaitingHandler;
 import com.lecimy.fx.store.GameStore;
+import javafx.stage.Stage;
+import javafx.stage.WindowEvent;
 
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -24,10 +29,11 @@ public class UserAwaitingController implements Initializable {
     private Text quizName;
 
     private Quiz quiz;
+    private static ClientThread clientThread = ClientThread.getInstance();
+    private ViewUtils viewUtils = new ViewUtils();
 
     public UserAwaitingController() {
         quiz = GameStore.getQuiz();
-        ClientThread clientThread = ClientThread.getInstance();
         clientThread.setRequestHandler(new UserGameAwaitingHandler());
         clientThread.setEventListeners(new EventListener[]{
             (OnNewPlayerListener) amount -> {
@@ -41,12 +47,16 @@ public class UserAwaitingController implements Initializable {
                 System.out.println("on start failure");
             }
         });
-        clientThread.run();
     }
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         quizName.setText(quiz.getName());
         playersAmount.setText("Aktualna liczba graczy: " + quiz.getPlayersAmount());
+    }
+
+    public static void callDeferredThread() {
+        System.out.println("calling deferred thread");
+        clientThread.run();
     }
 }

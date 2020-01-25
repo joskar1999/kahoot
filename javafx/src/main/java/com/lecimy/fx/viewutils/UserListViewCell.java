@@ -1,5 +1,6 @@
 package com.lecimy.fx.viewutils;
 
+import com.lecimy.fx.controller.UserAwaitingController;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -77,6 +78,16 @@ public class UserListViewCell extends ListCell<Quiz> {
         clientThread.setEventListeners(new EventListener[]{
             (OnSuccessJoinGameListener) () -> {
                 GameStore.setQuiz(quiz);
+                Thread thread = new Thread(() -> {
+                    try {
+                        Thread.sleep(500);
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+                    UserAwaitingController.callDeferredThread();
+                });
+                thread.setDaemon(true);
+                thread.start();
                 viewUtils.switchScenes("userAwaitingPage.fxml");
             },
             (OnFailureJoinGameListener) () -> System.out.println("nie można dołączyć do gry")

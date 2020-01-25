@@ -1,0 +1,11 @@
+
+O
+squid:S106:"9Replace this use of System.out or System.err by a logger.(ÑŒƒª
+jsquid:UselessImportCheck	"?Remove this unused import 'com.lecimy.fx.net.ResponseMessages'.(Á­î°8ßÛ¾óı-
+esquid:UselessImportCheck"5Remove this unused import 'com.lecimy.fx.net.Client'.(îûÕ·ùÿÿÿÿ8àÛ¾óı-
+Fsquid:S1148%"#Use a logger to log this exception.(€ÉÔ…ıÿÿÿÿ8àÛ¾óı-
+Fsquid:S11483"#Use a logger to log this exception.(€ÉÔ…ıÿÿÿÿ8àÛ¾óı-
+[
+squid:S106#"9Replace this use of System.out or System.err by a logger.(ï¬¨–ıÿÿÿÿ8àÛ¾óı-
+[
+squid:S1061"9Replace this use of System.out or System.err by a logger.(üöÕøüÿÿÿÿ8àÛ¾óı-
