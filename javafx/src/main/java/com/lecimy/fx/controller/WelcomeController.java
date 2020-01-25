@@ -9,9 +9,17 @@ import com.lecimy.fx.net.Client;
 import com.lecimy.fx.net.ClientThread;
 import com.lecimy.fx.net.handler.HostInitializationHandler;
 import com.lecimy.fx.viewutils.ViewUtils;
+import com.lecimy.fx.listener.*;
+import com.lecimy.fx.net.Client;
+import com.lecimy.fx.net.ClientThread;
+import com.lecimy.fx.net.handler.HostInitializationHandler;
+import com.lecimy.fx.net.handler.UserInitializationHandler;
+import com.lecimy.fx.viewutils.ViewUtils;
 
 import java.net.URL;
 import java.util.ResourceBundle;
+
+import static com.lecimy.fx.net.RequestMessages.USER;
 
 public class WelcomeController implements Initializable {
 
@@ -47,6 +55,12 @@ public class WelcomeController implements Initializable {
 
     @FXML
     void sendToUserPage() {
-        utils.switchScenes("userPage.fxml");
+        clientThread.setRequestHandler(new UserInitializationHandler());
+        clientThread.setEventListeners(new EventListener[]{
+            (OnSuccessUserCreationListener) () -> utils.switchScenes("userPage.fxml"),
+            (OnFailureUserCreationListener) () -> System.out.println("nie można utworzyć gracza")
+        });
+        client.sendMessage(USER);
+        clientThread.run();
     }
 }

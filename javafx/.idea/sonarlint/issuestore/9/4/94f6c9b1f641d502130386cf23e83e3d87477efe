@@ -1,10 +1,10 @@
 
 Msquid:S1068"*Remove this unused "client" private field.(‚Ø–øùÿÿÿÿ8ê¨åØù-
 [
-squid:S106."9Replace this use of System.out or System.err by a logger.(´Íòíüÿÿÿÿ8¤ö¥§ü-
+squid:S1067"9Replace this use of System.out or System.err by a logger.(”¿¡Îüÿÿÿÿ8Í”…×ù-
+Fsquid:S1148&"#Use a logger to log this exception.(€ÉÔ…ıÿÿÿÿ8å×Øù-
+Fsquid:S11480"#Use a logger to log this exception.(€ÉÔ…ıÿÿÿÿ8Èÿ™ı-
 V
 squid:S106$"9Replace this use of System.out or System.err by a logger.(ßÕÄÌ8å×Øù-
 [
-squid:S1067"9Replace this use of System.out or System.err by a logger.(”¿¡Îüÿÿÿÿ8Í”…×ù-
-Fsquid:S11480"#Use a logger to log this exception.(€ÉÔ…ıÿÿÿÿ8å×Øù-
-Fsquid:S1148&"#Use a logger to log this exception.(€ÉÔ…ıÿÿÿÿ8å×Øù-
+squid:S106."9Replace this use of System.out or System.err by a logger.(´Íòíüÿÿÿÿ8Èÿ™ı-

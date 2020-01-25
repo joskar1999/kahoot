@@ -7,10 +7,20 @@ import javafx.scene.control.ListCell;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.text.Text;
 import com.lecimy.fx.model.Quiz;
+import com.lecimy.fx.listener.EventListener;
+import com.lecimy.fx.listener.OnFailureJoinGameListener;
+import com.lecimy.fx.listener.OnSuccessJoinGameListener;
+import com.lecimy.fx.model.Quiz;
+import com.lecimy.fx.net.Client;
+import com.lecimy.fx.net.ClientThread;
+import com.lecimy.fx.net.handler.JoinGameHandler;
+import com.lecimy.fx.store.GameStore;
 
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
+
+import static com.lecimy.fx.net.RequestMessages.JOIN;
 
 public class UserListViewCell extends ListCell<Quiz> {
 
@@ -27,10 +37,15 @@ public class UserListViewCell extends ListCell<Quiz> {
     private Text playersAmount;
 
     private FXMLLoader loader;
+    private Quiz quiz;
+    private ViewUtils viewUtils = new ViewUtils();
+    private OnSuccessJoinGameListener onSuccessJoinGameListener;
+    private OnFailureJoinGameListener onFailureJoinGameListener;
 
     @Override
     protected void updateItem(Quiz item, boolean empty) {
         super.updateItem(item, empty);
+        this.quiz = item;
 
         if (empty || item == null) {
             setText(null);
@@ -40,7 +55,7 @@ public class UserListViewCell extends ListCell<Quiz> {
                 loader = new FXMLLoader(getClass().getResource("/fxml/userListViewCell.fxml"));
                 loader.setController(this);
             }
-            quizName.setText(item.getName());
+            quizName.setText(item.getName() + item.getId());
             questionsAmount.setText(item.getQuestionsAmount() + " pytań");
             playersAmount.setText("gracze: " + item.getPlayersAmount());
             setText(null);
@@ -50,6 +65,27 @@ public class UserListViewCell extends ListCell<Quiz> {
 
     @FXML
     public void getCellClicked() {
-        System.out.println(quizName.getText());
+        System.out.println("dołączanie do gry " + quiz.getName() + quiz.getId());
+        ClientThread clientThread = ClientThread.getInstance();
+        Client client = Client.getInstance();
+        clientThread.setRequestHandler(new JoinGameHandler());
+        clientThread.setEventListeners(new EventListener[]{
+            (OnSuccessJoinGameListener) () -> {
+                GameStore.setQuiz(quiz);
+                viewUtils.switchScenes("userAwaitingPage.fxml");
+            },
+            (OnFailureJoinGameListener) () -> System.out.println("nie można dołączyć do gry")
+        });
+        client.sendMessage(JOIN);
+        client.sendMessage(String.valueOf(quiz.getId()));
+        clientThread.run();
+    }
+
+    public void setOnSuccessJoinGameListener(OnSuccessJoinGameListener onSuccessJoinGameListener) {
+        this.onSuccessJoinGameListener = onSuccessJoinGameListener;
+    }
+
+    public void setOnFailureJoinGameListener(OnFailureJoinGameListener onFailureJoinGameListener) {
+        this.onFailureJoinGameListener = onFailureJoinGameListener;
     }
 }

@@ -1,0 +1,11 @@
+
+‹squid:S1450&"hRemove the "onSuccessJoinGameListener" field and declare it as a local variable in the relevant methods.(àÏÈ¨øÿÿÿÿ8ÊœˆËý-
+†squid:S1450'"hRemove the "onFailureJoinGameListener" field and declare it as a local variable in the relevant methods.(“×úµ8ÊœˆËý-
+qsquid:MaximumInheritanceDepth"<This class has 9 parents which is greater than 5 authorized.(èÄÀ»ûÿÿÿÿ8ÊœˆËý-
+[
+squid:S106N"9Replace this use of System.out or System.err by a logger.(«Ö¾Üøÿÿÿÿ8ÊœˆËý-
+[
+squid:S106E"9Replace this use of System.out or System.err by a logger.(”íŸ¤üÿÿÿÿ8ÊœˆËý-
+`squid:S1068&"=Remove this unused "onSuccessJoinGameListener" private field.(àÏÈ¨øÿÿÿÿ8ÊœˆËý-
+[squid:S1068'"=Remove this unused "onFailureJoinGameListener" private field.(“×úµ8ÊœˆËý-
+Fsquid:S11488"#Use a logger to log this exception.(€ÉÔ…ýÿÿÿÿ8ÊœˆËý-

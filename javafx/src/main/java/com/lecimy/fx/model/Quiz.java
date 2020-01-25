@@ -7,6 +7,7 @@ import lombok.Data;
 @AllArgsConstructor
 public class Quiz {
 
+    private int id;
     private String name;
     private String questionsAmount;
     private String playersAmount;

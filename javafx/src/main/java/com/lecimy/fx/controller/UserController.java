@@ -8,6 +8,14 @@ import javafx.scene.control.ListView;
 import com.lecimy.fx.model.Quiz;
 import com.lecimy.fx.viewutils.HostListViewCell;
 import com.lecimy.fx.viewutils.UserListViewCell;
+import com.lecimy.fx.listener.EventListener;
+import com.lecimy.fx.listener.OnFailureQuizHeadersReceiveListener;
+import com.lecimy.fx.listener.OnSuccessQuizHeadersReceiveListener;
+import com.lecimy.fx.model.Quiz;
+import com.lecimy.fx.net.ClientThread;
+import com.lecimy.fx.net.handler.UserDataFetchHandler;
+import com.lecimy.fx.viewutils.HostListViewCell;
+import com.lecimy.fx.viewutils.UserListViewCell;
 
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -21,10 +29,13 @@ public class UserController implements Initializable {
 
     public UserController() {
         quizzes = FXCollections.observableArrayList();
-        quizzes.addAll(new Quiz("Alkohole", "10", "2"),
-            new Quiz("Alkohole2", "10", "2"),
-            new Quiz("Alkohole3", "10", "3"),
-            new Quiz("Alkohole4", "10", "4"));
+        ClientThread clientThread = ClientThread.getInstance();
+        clientThread.setRequestHandler(new UserDataFetchHandler());
+        clientThread.setEventListeners(new EventListener[]{
+            (OnSuccessQuizHeadersReceiveListener) quizzes -> this.quizzes.addAll(quizzes),
+            (OnFailureQuizHeadersReceiveListener) () -> System.out.println("nie udało się odebrać nagłówków gier")
+        });
+        clientThread.run();
     }
 
     @Override

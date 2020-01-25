@@ -6,53 +6,56 @@ import com.lecimy.fx.listener.OnSuccessQuizHeadersReceiveListener;
 import com.lecimy.fx.model.Quiz;
 import com.lecimy.fx.net.Client;
 import com.lecimy.fx.net.ClientThread;
+import com.lecimy.fx.net.ResponseMessages;
 
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-import static com.lecimy.fx.net.ResponseMessages.QUIZ_HEADERS;
+import static com.lecimy.fx.net.ResponseMessages.GAMES_HEADERS;
 
-public class HostDataFetchHandler implements RequestHandler {
+public class UserDataFetchHandler implements RequestHandler {
 
-    private Client client;
     private BufferedReader reader;
-    private List<Quiz> quizzes = new ArrayList<>();
+    private List<Quiz> games = new ArrayList<>();
 
-    public HostDataFetchHandler() {
-        this.client = Client.getInstance();
-        this.reader = ClientThread.getInstance().getReader();
+    public UserDataFetchHandler() {
+        reader = ClientThread.getInstance().getReader();
     }
 
     @Override
     public void handle(String message, EventListener[] eventListeners) {
         OnSuccessQuizHeadersReceiveListener onSuccessQuizHeadersReceiveListener = (OnSuccessQuizHeadersReceiveListener) eventListeners[0];
         OnFailureQuizHeadersReceiveListener onFailureQuizHeadersReceiveListener = (OnFailureQuizHeadersReceiveListener) eventListeners[1];
-        if (QUIZ_HEADERS.equals(message)) {
-            String quizzesAmount = "";
+        if (GAMES_HEADERS.equals(message)) {
+            String gamesAmount = "";
             try {
-                quizzesAmount = reader.readLine();
-                System.out.println("Quizzes amount: " + quizzesAmount);
+                gamesAmount = reader.readLine();
+                System.out.println("games amount: " + gamesAmount);
             } catch (IOException e) {
                 e.printStackTrace();
             }
-            for (int i = 0; i < Integer.parseInt(quizzesAmount); i++) {
+            for (int i = 0; i < Integer.parseInt(gamesAmount); i++) {
                 String name = "";
                 String questionsAmount = "";
+                String playersAmount = "";
+                String id = "";
                 try {
                     name = reader.readLine();
                     questionsAmount = reader.readLine();
-                    System.out.println(name + ", " + questionsAmount);
+                    playersAmount = reader.readLine();
+                    id = reader.readLine();
+                    System.out.println(name + ", " + questionsAmount + ", " + playersAmount + ", " + id);
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
-                quizzes.add(new Quiz(0, name, questionsAmount, ""));
+                games.add(new Quiz(Integer.parseInt(id), name, questionsAmount, playersAmount));
             }
-            onSuccessQuizHeadersReceiveListener.onSuccess(quizzes);
+            onSuccessQuizHeadersReceiveListener.onSuccess(games);
         } else {
             onFailureQuizHeadersReceiveListener.onFailure();
-            System.out.println("Nie otrzymano QUIZ_HEADERS, zamiast jest: " + message);
+            System.out.println("Nie otrzymano GAMES_HEADERS, zamiast jest: " + message);
         }
     }
 }
