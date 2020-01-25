@@ -15,6 +15,7 @@
 #include  <string>
 #include <sstream>
 #include <stdio.h>
+#include <mutex>
 
 
 using namespace std;
@@ -22,6 +23,8 @@ using namespace std;
 #define ServerPort 1280
 
 int uniqueId = 1;
+
+mutex userAmountMutex;
 
 struct Question{
     string question;
@@ -226,6 +229,8 @@ void playerClient(int clientDesc){
         write(clientDesc , actuallQuizQuestionAmount, strlen(actuallQuizQuestionAmount));
 
         write(clientDesc, "0\n",2);
+//        const char * gamePlayersAmount = integerToChar(allGames[i].gameUsers.size());
+//        write(clientDesc , gamePlayersAmount, strlen(gamePlayersAmount));
 
         const char * gameId = integerToChar(allGames[i].id);
         write(clientDesc , gameId, strlen(gameId));
@@ -244,20 +249,30 @@ void playerClient(int clientDesc){
         write(clientDesc,"OK\n",3);
         for(int i=0; i<allGames.size();i++){
             if(allGames[i].id == idGame){
+//                userAmountMutex.lock();
                 allGames[i].userAmount = allGames[i].userAmount + 1;
-                for(int j=0; j< Users.size();j++){
-                    if(Users[j].userDesc == clientDesc)
+
+                for(int j=0; j< Users.size();j++) {
+                    if (Users[j].userDesc == clientDesc){
                         allGames[i].gameUsers.push_back(Users[j]);
                         break;
                     }
+                }
                 for(int j;j<allGames[i].gameUsers.size();j++){
                     write(allGames[i].gameUsers[j].userDesc , "NEW_USER\n", 9);
+                    const char * userInGame = integerToChar(allGames[i].userAmount);
+                    write(allGames[i].gameUsers[j].userDesc , userInGame, strlen(userInGame));
+//                   userAmountMutex.unlock();
                     }
                 write(allGames[i].hostDesc, "NEW_USER\n", 9);
-                }
+                const char * userInGame = integerToChar(allGames[i].userAmount);
+                write(allGames[i].hostDesc , userInGame, strlen(userInGame));
                 break;
+                }
             }
         }
+        ssize_t msgsize2 = recv(clientDesc, messageBuffer, 100, 0);
+        message = convertToString(messageBuffer, msgsize);
 //    ssize_t msgsize3 = recv(clientDesc, messageBuffer, 100, 0);
 //    message = convertToString(messageBuffer, msgsize3);
 //    if(message == "START"){
@@ -268,26 +283,30 @@ void playerClient(int clientDesc){
 }
 
 
-void hostClient(int clientDesc){
 
-    write(clientDesc , "OK\n", 3);
+void hostClient(int clientDesc) {
+
+    write(clientDesc, "OK\n", 3);
     sendingQuizInformation(clientDesc);
     chooseQuiz(clientDesc);
     char messageBuffer[100];
     string message;
     ssize_t msgsize3 = recv(clientDesc, messageBuffer, 100, 0);
     message = convertToString(messageBuffer, msgsize3);
-    if(message == "START"){
-        cout << "Gra zostalo rozpoczeta" << endl;
+    if (message == "START") {
+        for (int i = 0; i < allGames.size(); i++) {
+            if (allGames[i].hostDesc == clientDesc) {
+                for (int j = 0; j < allGames[i].gameUsers.size(); ++j) {
+                    write(allGames[i].gameUsers[j].userDesc, "START\n", 6);
+                }
+                break;
+            }
+        }
+        write(clientDesc, "OK\n", 3);
     }
-
-
-//    sendingQuizInformation(clientDesc);
-
-    //Wysyalanie informacji na temat quizow
 }
 
-void userThread(int &clientDesc){
+void userThread(int clientDesc){
 
     cout << "Nowy uzytkownik dodany" << endl;
 
@@ -334,9 +353,10 @@ void userThread(int &clientDesc){
 void clientConnection(int clientDesc){
 
     cout << "Zostalo nawiazane polaczenie z clientem, tworzony jest nowy watek" << endl;
+//    write(clientDesc, "OK\n",3);
 
-    thread thd1(userThread, std::ref(clientDesc)); //Uruchomienie watka oraz przekazanie do niego deskryptora clienta
-    thd1.join();
+    thread thd1(userThread, clientDesc); //Uruchomienie watka oraz przekazanie do niego deskryptora clienta
+    thd1.detach();
 }
 
 int main() {
@@ -350,12 +370,13 @@ int main() {
 
 //    displayAllQuiz();
 
-    sockaddr_in serverAddr {};
+
+    struct sockaddr_in serverAddr;
     serverAddr.sin_family = AF_INET;
     serverAddr.sin_addr.s_addr = htonl(INADDR_ANY);
     serverAddr.sin_port = htons((uint16_t)ServerPort);
 
-    int serverDesc = socket(PF_INET, SOCK_STREAM, 0);
+    int serverDesc = socket(AF_INET, SOCK_STREAM, 0);
     if(serverDesc == -1){
         perror("socket failed");
         return 1;
@@ -364,24 +385,20 @@ int main() {
     int fail = bind(serverDesc, (sockaddr*) &serverAddr, sizeof(serverAddr));
     if(fail){
         perror("bind failed");
-        return 1;
     }
 
-    fail = listen(serverDesc, 1);
+    fail = listen(serverDesc, 10);
     if(fail){
         perror("listen failed");
-        return 1;
     }
-
+    int connectDesc;
     while(1){
-
         // accept zwraca deskryptor pliku nawiązanego połączenia (czekając na to połączenie, jeśli żadnego nie ma w kolejce)
-        int connectDesc = accept(serverDesc, nullptr, nullptr);
-
-        if(connectDesc == -1){
-            perror("accept failed");
-            return 1;
-        }
+        connectDesc = accept(serverDesc, nullptr, nullptr);
+        cout << "Deskryptor: " << connectDesc << endl;
+//        if(connectDesc == -1){
+//            perror("accept failed");
+//        }
         clientConnection(connectDesc);
 
     }
