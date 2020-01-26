@@ -147,10 +147,6 @@ void displayAllQuiz(){
 
 void chooseQuiz(int clientDesc){
 
-//    for (auto&& [first,second] : mymap) {
-        // use first and second
-//    }
-
     // Czekamy az gracz (HOST) wybierze Quiz ktory chce zalozyc
     char quizChooseBuffer[100];
     ssize_t msgsize = recv(clientDesc, quizChooseBuffer, 100, 0);
@@ -163,6 +159,12 @@ void chooseQuiz(int clientDesc){
             game.gameQuiz = allQuiz[i];
             game.id = uniqueId;
             uniqueId++;
+
+//            for(int k=0;k<Users.size();k++){
+//                if(Users[k].userDesc == clientDesc){
+//                    game.gameUsers.push_back(Users[k]);
+//                }
+//            }
             allGames.push_back(game);
             break;
         }
@@ -206,6 +208,62 @@ void sendingQuizInformation(int clientDesc){
     }
 }
 
+void writeAllQuizInformation(int clientDesc, Game game){
+
+    const char * questionAmount = integerToChar(game.gameQuiz.questionsAmount);
+    //Wysylamy liczbe pytan
+    write(clientDesc, questionAmount, strlen(questionAmount));
+
+    //Wysylamy poszczegolne pytania i dostepne odpowiedzi
+    for(int i=0; i<game.gameQuiz.questionsAmount;i++){
+        write(clientDesc , game.gameQuiz.questions[i].question.c_str(), strlen(game.gameQuiz.questions[i].question.c_str()));
+        write(clientDesc , game.gameQuiz.questions[i].a.c_str(), strlen(game.gameQuiz.questions[i].a.c_str()));
+        write(clientDesc , game.gameQuiz.questions[i].b.c_str(), strlen(game.gameQuiz.questions[i].b.c_str()));
+        write(clientDesc , game.gameQuiz.questions[i].c.c_str(), strlen(game.gameQuiz.questions[i].c.c_str()));
+        write(clientDesc , game.gameQuiz.questions[i].d.c_str(), strlen(game.gameQuiz.questions[i].d.c_str()));
+    }
+}
+
+void gameStart(int clientDesc, Game game){
+
+    //Gra sie rozpoczela, informujemy o tym klienta aby sie przygotowal na odbior danych
+    write(clientDesc, "QUIZ\n", 5);
+
+    writeAllQuizInformation(clientDesc, game);
+
+    //Sprawdzamy czy klient otrzymal liczbe pytania i wszystkie pytania aby mogl je wyswietlic na FrontEndzie
+    char messageBuffer[100];
+    ssize_t msgsize = recv(clientDesc, messageBuffer, 100, 0);
+    string message = convertToString(messageBuffer, msgsize);
+    memset(messageBuffer, 0, sizeof messageBuffer);
+    if(message == "OK"){
+        cout << "Wyslano poprawnie wszystie quizy" << endl;
+    }
+
+    string answer;
+    int timestamp;
+
+    for(int i=0;i<game.gameQuiz.questionsAmount;i++){
+
+        msgsize = recv(clientDesc, messageBuffer, 100, 0);
+        answer = convertToString(messageBuffer, msgsize);
+        memset(messageBuffer, 0, sizeof messageBuffer);
+
+        msgsize = recv(clientDesc, messageBuffer, 100, 0);
+        sscanf(messageBuffer, "%d", &timestamp);
+        memset(messageBuffer, 0, sizeof messageBuffer);
+
+
+    }
+
+
+
+
+
+
+
+}
+
 void playerClient(int clientDesc){
 
     //Potwierdzamy ze nowy gracz zostal dodany
@@ -228,9 +286,9 @@ void playerClient(int clientDesc){
         const char * actuallQuizQuestionAmount = integerToChar(allGames[i].gameQuiz.questionsAmount);
         write(clientDesc , actuallQuizQuestionAmount, strlen(actuallQuizQuestionAmount));
 
-        write(clientDesc, "0\n",2);
-//        const char * gamePlayersAmount = integerToChar(allGames[i].gameUsers.size());
-//        write(clientDesc , gamePlayersAmount, strlen(gamePlayersAmount));
+//        write(clientDesc, "0\n",2);
+        const char * gamePlayersAmount = integerToChar(allGames[i].gameUsers.size());
+        write(clientDesc , gamePlayersAmount, strlen(gamePlayersAmount));
 
         const char * gameId = integerToChar(allGames[i].id);
         write(clientDesc , gameId, strlen(gameId));
@@ -281,15 +339,17 @@ void playerClient(int clientDesc){
                 break;
                 }
             }
+        char messageBuffer2[100];
+        ssize_t msgsize = recv(clientDesc, messageBuffer2, 100, 0);
+        message = convertToString(messageBuffer2, msgsize);
+        if(message == "OK"){
+            for(int i=0; i<allGames.size();i++){
+                if(allGames[i].id == idGame) {
+                    gameStart(clientDesc, allGames[i]);
+                }
+            }
         }
-        ssize_t msgsize2 = recv(clientDesc, messageBuffer, 100, 0);
-        message = convertToString(messageBuffer, msgsize);
-//    ssize_t msgsize3 = recv(clientDesc, messageBuffer, 100, 0);
-//    message = convertToString(messageBuffer, msgsize3);
-//    if(message == "START"){
-//        cout
-//    }
-
+    }
 
 }
 
@@ -302,11 +362,13 @@ void hostClient(int clientDesc) {
     chooseQuiz(clientDesc);
     char messageBuffer[100];
     string message;
+    int gameId;
     ssize_t msgsize3 = recv(clientDesc, messageBuffer, 100, 0);
     message = convertToString(messageBuffer, msgsize3);
     if (message == "START") {
         for (int i = 0; i < allGames.size(); i++) {
             if (allGames[i].hostDesc == clientDesc) {
+                gameId = allGames[i].id;
                 for (int j = 0; j < allGames[i].gameUsers.size(); ++j) {
                     write(allGames[i].gameUsers[j].userDesc, "START\n", 6);
                 }
@@ -314,6 +376,12 @@ void hostClient(int clientDesc) {
             }
         }
         write(clientDesc, "OK\n", 3);
+
+        for(int i=0; i<allGames.size();i++){
+            if(allGames[i].id == gameId) {
+                gameStart(clientDesc, allGames[i]);
+            }
+        }
     }
 }
 
