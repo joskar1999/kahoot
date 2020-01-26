@@ -213,8 +213,8 @@ void playerClient(int clientDesc){
     write(clientDesc,"GAMES_HEADERS\n",14);
 
     string gameTitle;
-
     string actuallStringGames;
+
     //Wysylamy liczbe dostepnych quizow
     actuallStringGames = to_string(allGames.size()) + "\n";
     //questionStringAmount = questionStringAmount + "\n";
@@ -251,21 +251,32 @@ void playerClient(int clientDesc){
             if(allGames[i].id == idGame){
 //                userAmountMutex.lock();
                 allGames[i].userAmount = allGames[i].userAmount + 1;
-
                 for(int j=0; j< Users.size();j++) {
                     if (Users[j].userDesc == clientDesc){
                         allGames[i].gameUsers.push_back(Users[j]);
                         break;
                     }
                 }
-                for(int j;j<allGames[i].gameUsers.size();j++){
-                    write(allGames[i].gameUsers[j].userDesc , "NEW_USER\n", 9);
-                    const char * userInGame = integerToChar(allGames[i].userAmount);
-                    write(allGames[i].gameUsers[j].userDesc , userInGame, strlen(userInGame));
-//                   userAmountMutex.unlock();
-                    }
+                cout << "Deskryptory graczy w grze o ID: " << allGames[i].id << endl;
+                for(int k=0;k<allGames[i].gameUsers.size();k++) {
+                    cout << allGames[i].gameUsers[k].userDesc << endl;
+                    write(allGames[i].gameUsers[k].userDesc, "NEW_USER\n", 9);
+                    const char * userInGame = integerToChar(allGames[i].gameUsers.size());
+                    write(allGames[i].gameUsers[k].userDesc , userInGame, strlen(userInGame));
+                }
+                cout << "Koniec wyswietlania graczy" << endl;
+                cout << "Liczba graczy w Grze: " << allGames[i].gameUsers.size()  << endl;
+//                for(int p;p<allGames[i].gameUsers.size();p++){
+//                    cout << "Wysylaj jakies info i sprawdz jaki rozmiar wiadomosci: ";
+//                    ssize_t msgsize3 = write(allGames[i].gameUsers[p].userDesc , "NEW_USER\n", 9);
+//                    cout << msgsize3 << endl;
+//                    cout << "Wysylam new USERA" << endl;
+//                    const char * userInGame = integerToChar(allGames[i].gameUsers.size());
+//                    write(allGames[i].gameUsers[p].userDesc , userInGame, strlen(userInGame));
+////                   userAmountMutex.unlock();
+//                    }
                 write(allGames[i].hostDesc, "NEW_USER\n", 9);
-                const char * userInGame = integerToChar(allGames[i].userAmount);
+                const char * userInGame = integerToChar(allGames[i].gameUsers.size());
                 write(allGames[i].hostDesc , userInGame, strlen(userInGame));
                 break;
                 }
