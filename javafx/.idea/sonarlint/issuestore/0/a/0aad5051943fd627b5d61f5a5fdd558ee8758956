@@ -1,11 +1,17 @@
 
-‹squid:S1450&"hRemove the "onSuccessJoinGameListener" field and declare it as a local variable in the relevant methods.(àÏÈ¨øÿÿÿÿ8ÊœˆËý-
-†squid:S1450'"hRemove the "onFailureJoinGameListener" field and declare it as a local variable in the relevant methods.(“×úµ8ÊœˆËý-
-qsquid:MaximumInheritanceDepth"<This class has 9 parents which is greater than 5 authorized.(èÄÀ»ûÿÿÿÿ8ÊœˆËý-
+Fsquid:S1148="#Use a logger to log this exception.(€ÉÔ…ýÿÿÿÿ8ÈÒôóý-
+Fsquid:S1148U"#Use a logger to log this exception.(€ÉÔ…ýÿÿÿÿ8ÃÈ‘øý-
+†squid:S1450,"hRemove the "onFailureJoinGameListener" field and declare it as a local variable in the relevant methods.(“×úµ8ÍÜ¾óý-
+Tsquid:UselessImportCheck")Remove this unused import 'java.io.File'.(†Ð¥Å8ÍÜ¾óý-
 [
-squid:S106N"9Replace this use of System.out or System.err by a logger.(«Ö¾Üøÿÿÿÿ8ÊœˆËý-
+squid:S106J"9Replace this use of System.out or System.err by a logger.(”íŸ¤üÿÿÿÿ8ÍÜ¾óý-
 [
-squid:S106E"9Replace this use of System.out or System.err by a logger.(”íŸ¤üÿÿÿÿ8ÊœˆËý-
-`squid:S1068&"=Remove this unused "onSuccessJoinGameListener" private field.(àÏÈ¨øÿÿÿÿ8ÊœˆËý-
-[squid:S1068'"=Remove this unused "onFailureJoinGameListener" private field.(“×úµ8ÊœˆËý-
-Fsquid:S11488"#Use a logger to log this exception.(€ÉÔ…ýÿÿÿÿ8ÊœˆËý-
+squid:S106]"9Replace this use of System.out or System.err by a logger.(«Ö¾Üøÿÿÿÿ8ÊœˆËý-
+`squid:S1068+"=Remove this unused "onSuccessJoinGameListener" private field.(àÏÈ¨øÿÿÿÿ8ÍÜ¾óý-
+qsquid:MaximumInheritanceDepth"<This class has 9 parents which is greater than 5 authorized.(èÄÀ»ûÿÿÿÿ8ÍÜ¾óý-
+[squid:UselessImportCheck"0Remove this unused import 'javafx.scene.Parent'.(²ä¡È8ÍÜ¾óý-
+Ysquid:UselessImportCheck")Remove this unused import 'java.net.URL'.(ñìÁ„üÿÿÿÿ8ÍÜ¾óý-
+‹squid:S1450+"hRemove the "onSuccessJoinGameListener" field and declare it as a local variable in the relevant methods.(àÏÈ¨øÿÿÿÿ8ÍÜ¾óý-
+dsquid:S2142T"FEither re-interrupt this method or rethrow the "InterruptedException".(ä ¹€8ÃÈ‘øý-
+[squid:S1068,"=Remove this unused "onFailureJoinGameListener" private field.(“×úµ8ÍÜ¾óý-
+Isquid:UselessImportCheck"Remove this duplicated import.(Ï×Í÷8ÍÜ¾óý-

@@ -1,11 +1,5 @@
 package com.lecimy.fx.controller;
 
-import com.lecimy.fx.Main;
-import com.lecimy.fx.viewutils.ViewUtils;
-import javafx.event.EventHandler;
-import javafx.fxml.FXML;
-import javafx.fxml.Initializable;
-import javafx.scene.text.Text;
 import com.lecimy.fx.listener.EventListener;
 import com.lecimy.fx.listener.OnGameStartFailureListener;
 import com.lecimy.fx.listener.OnGameStartListener;
@@ -14,8 +8,10 @@ import com.lecimy.fx.model.Quiz;
 import com.lecimy.fx.net.ClientThread;
 import com.lecimy.fx.net.handler.UserGameAwaitingHandler;
 import com.lecimy.fx.store.GameStore;
-import javafx.stage.Stage;
-import javafx.stage.WindowEvent;
+import com.lecimy.fx.viewutils.ViewUtils;
+import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
+import javafx.scene.text.Text;
 
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -37,6 +33,7 @@ public class UserAwaitingController implements Initializable {
         clientThread.setRequestHandler(new UserGameAwaitingHandler());
         clientThread.setEventListeners(new EventListener[]{
             (OnNewPlayerListener) amount -> {
+                System.out.println("new player, amount: " + amount);
                 playersAmount.setText("Aktualna liczba graczy: " + amount);
                 clientThread.run();
             },

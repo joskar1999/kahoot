@@ -1,10 +1,6 @@
 
 U
 %src/main/java/com/lecimy/fx/Main.java,0\f\0fda67ee1fab3962f6d06566a2d77a3c5e3e14a5
-c
-3src/main/java/com/lecimy/fx/fxml/wrongNickPage.fxml,c\0\c06fc09a387205d27853c7499643902474840293
-_
-/src/main/java/com/lecimy/fx/fxml/adminView.fxml,2\e\2e03a8a89843196c28725ea2cf5c7b92133e53d6
 [
 +src/main/java/com/lecimy/fx/net/Client.java,5\3\53971a09578b7f9eae0cdbccfbca10c5415393a9
 w
@@ -15,8 +11,6 @@ d
 4src/main/java/com/lecimy/fx/viewutils/ViewUtils.java,8\a\8ac735ed61507e1c10af521999b5ee16907e1d94
 m
 =src/main/java/com/lecimy/fx/controller/WelcomeController.java,c\4\c484157fd54f1e8d46688b34c4fff7e856893793
-a
-1src/main/java/com/lecimy/fx/fxml/welcomePage.fxml,e\2\e2cb1ea3cb1b9dd41c03e2a54687194cbfaeeea6
 \
 ,src/main/java/com/lecimy/fx/model/Phase.java,9\f\9f7ac850897bae1f1acb07306e67847b0bcfe7b9
 j
@@ -63,3 +57,11 @@ v
 Fsrc/main/java/com/lecimy/fx/net/handler/GameInitializationHandler.java,9\8\98d8e40f871fde85de6766d33957821ce155c004
 j
 :src/main/java/com/lecimy/fx/controller/UserController.java,2\6\26768cc99accab480fbbd8d1d559a760cbd855b3
+l
+<src/main/java/com/lecimy/fx/net/handler/JoinGameHandler.java,7\7\77dffb26ec758c179a4fffc31bf97e7f1c821e7a
+n
+>src/main/java/com/lecimy/fx/controller/AwaitingController.java,f\7\f7980aa9ae1c3df8b5a9f60d49440bcf6be41dcb
+r
+Bsrc/main/java/com/lecimy/fx/controller/UserAwaitingController.java,0\e\0e07b599d59e3c4ce9b44ea9f6a88d663eac40e0
+t
+Dsrc/main/java/com/lecimy/fx/net/handler/UserGameAwaitingHandler.java,0\c\0cb388f885ff25954ef41f5e5bae02a34e8f5318

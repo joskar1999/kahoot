@@ -1,5 +1,7 @@
 package com.lecimy.fx.viewutils;
 
+import com.lecimy.fx.controller.AwaitingController;
+import com.lecimy.fx.controller.HostController;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.ListCell;
@@ -65,7 +67,19 @@ public class HostListViewCell extends ListCell<Quiz> {
         ClientThread clientThread = ClientThread.getInstance();
         clientThread.setRequestHandler(new GameInitializationHandler());
         clientThread.setEventListeners(new EventListener[]{
-            (OnSuccessGameInitializationListener) () -> viewUtils.switchScenes("awaitingPage.fxml"),
+            (OnSuccessGameInitializationListener) () -> {
+                Thread thread = new Thread(() -> {
+                    try {
+                        Thread.sleep(500);
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+                    AwaitingController.callDeferredThread();
+                });
+                thread.setDaemon(true);
+                thread.start();
+                viewUtils.switchScenes("awaitingPage.fxml");
+            },
             (OnFailureGameInitializationListener) () -> System.out.println("nie można utworzyć gry")
         });
         Client.getInstance().sendMessage(quiz.getName());

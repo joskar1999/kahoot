@@ -1,9 +1,12 @@
 
-•squid:S1450 "rRemove the "onSuccessGameInitializationListener" field and declare it as a local variable in the relevant methods.(Äìóþûÿÿÿÿ8Å¤ˆËý-
-Fsquid:S11482"#Use a logger to log this exception.(€ÉÔ…ýÿÿÿÿ8Å¤ˆËý-
-•squid:S1450!"rRemove the "onFailureGameInitializationListener" field and declare it as a local variable in the relevant methods.(§Ô÷Èýÿÿÿÿ8Å¤ˆËý-
-jsquid:S1068!"GRemove this unused "onFailureGameInitializationListener" private field.(§Ô÷Èýÿÿÿÿ8Å¤ˆËý-
-qsquid:MaximumInheritanceDepth"<This class has 9 parents which is greater than 5 authorized.(¹’íôúÿÿÿÿ8Å¤ˆËý-
-jsquid:S1068 "GRemove this unused "onSuccessGameInitializationListener" private field.(Äìóþûÿÿÿÿ8Å¤ˆËý-
+•squid:S1450$"rRemove the "onFailureGameInitializationListener" field and declare it as a local variable in the relevant methods.(§Ô÷Èýÿÿÿÿ8Å¤ˆËý-
 V
-squid:S106B"9Replace this use of System.out or System.err by a logger.(Ç‹ß˜8Å¤ˆËý-
+squid:S106E"9Replace this use of System.out or System.err by a logger.(Ç‹ß˜8Å¤ˆËý-
+jsquid:S1068$"GRemove this unused "onFailureGameInitializationListener" private field.(§Ô÷Èýÿÿÿÿ8Å¤ˆËý-
+•squid:S1450#"rRemove the "onSuccessGameInitializationListener" field and declare it as a local variable in the relevant methods.(Äìóþûÿÿÿÿ8Å¤ˆËý-
+Fsquid:S11485"#Use a logger to log this exception.(€ÉÔ…ýÿÿÿÿ8Å¤ˆËý-
+jsquid:S1068#"GRemove this unused "onSuccessGameInitializationListener" private field.(Äìóþûÿÿÿÿ8Å¤ˆËý-
+qsquid:MaximumInheritanceDepth"<This class has 9 parents which is greater than 5 authorized.(¹’íôúÿÿÿÿ8Å¤ˆËý-
+Isquid:UselessImportCheck"Remove this duplicated import.(Ï×Í÷8êŽôý-
+Ysquid:UselessImportCheck")Remove this unused import 'java.net.URL'.(ñìÁ„üÿÿÿÿ8êŽôý-
+Tsquid:UselessImportCheck")Remove this unused import 'java.io.File'.(†Ð¥Å8êŽôý-

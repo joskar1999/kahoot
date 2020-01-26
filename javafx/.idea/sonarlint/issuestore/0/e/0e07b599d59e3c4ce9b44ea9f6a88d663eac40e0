@@ -1,7 +1,10 @@
 
-Jsquid:S1602(",Remove useless curly braces around statement(†Í³8§Âòı-
-Osquid:S1602%",Remove useless curly braces around statement(şÔ³ûÿÿÿÿ8ŒÌÁòı-
+Jsquid:S1602*",Remove useless curly braces around statement(†Í³8¤¡íõı-
 V
-squid:S106&"9Replace this use of System.out or System.err by a logger.(í¢²à8ŒÌÁòı-
+squid:S106("9Replace this use of System.out or System.err by a logger.(í¢²à8¤¡íõı-
 [
-squid:S106)"9Replace this use of System.out or System.err by a logger.(öŞÔÇıÿÿÿÿ8§Âòı-
+squid:S106+"9Replace this use of System.out or System.err by a logger.(öŞÔÇıÿÿÿÿ8¤¡íõı-
+Ksquid:S1068"-Remove this unused "viewUtils" private field.(­ã¥­8åòŠøı-
+Osquid:S1602'",Remove useless curly braces around statement(şÔ³ûÿÿÿÿ8¤¡íõı-
+V
+squid:S1067"9Replace this use of System.out or System.err by a logger.(™ŒÎŒ8¹ï”øı-

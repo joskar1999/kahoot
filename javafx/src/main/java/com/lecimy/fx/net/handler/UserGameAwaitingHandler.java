@@ -26,6 +26,7 @@ public class UserGameAwaitingHandler implements RequestHandler {
         OnGameStartListener onGameStartListener = (OnGameStartListener) eventListeners[1];
         OnGameStartFailureListener onGameStartFailureListener = (OnGameStartFailureListener) eventListeners[2];
         if (NEW_USER.equals(message)) {
+            System.out.println("new player info");
             int playersAmount = 0;
             try {
                 String value = reader.readLine();

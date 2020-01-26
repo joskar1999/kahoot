@@ -7,7 +7,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="768.0" prefWidth="1366.0" xmlns="http://javafx.com/javafx/" xmlns:fx="http://javafx.com/fxml/" fx:controller="com.lecimy.fx.controller.AwaitingController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="768.0" prefWidth="1366.0" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.lecimy.fx.controller.AwaitingController">
     <children>
         <ImageView fitHeight="783.0" fitWidth="1380.0">
             <image>
@@ -24,9 +24,9 @@
                 <Image url="@assets/Group%2034.png" />
             </image>
         </ImageView>
-        <HBox layoutX="580.0" layoutY="361.0" prefHeight="62.0" prefWidth="207.0">
+        <HBox layoutX="443.0" layoutY="353.0" prefHeight="62.0" prefWidth="363.0">
             <children>
-                <Text fx:id="playersAmountText" fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="CENTER" wrappingWidth="206.05859375">
+                <Text fx:id="playersAmountText" fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Aktualna liczba graczy: 0" textAlignment="CENTER" wrappingWidth="479.05859375">
                     <font>
                         <Font name="Arial" size="36.0" />
                     </font>

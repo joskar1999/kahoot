@@ -1,5 +1,8 @@
 
-csquid:HiddenFieldCheck ";Rename "quizzes" which hides the field declared at line 25.(¥™F8£ŸˆËı-
-squid:UselessImportCheck"ORemove this unused import 'main.java.com.lecimy.fx.viewutils.HostListViewCell'.(©È½Ôüÿÿÿÿ8£ŸˆËı-
+Isquid:UselessImportCheck"Remove this duplicated import.(ı¦è8å£õı-
+Nsquid:UselessImportCheck"Remove this duplicated import.(®Æü¤ıÿÿÿÿ8å£õı-
+csquid:HiddenFieldCheck#";Rename "quizzes" which hides the field declared at line 28.(¥™F8£ŸˆËı-
+psquid:UselessImportCheck	"ERemove this unused import 'com.lecimy.fx.viewutils.HostListViewCell'.(ı¦è8å£õı-
+Isquid:UselessImportCheck"Remove this duplicated import.(Ï×Í÷8å£õı-
 [
-squid:S106!"9Replace this use of System.out or System.err by a logger.(ŠÌ´Áúÿÿÿÿ8£ŸˆËı-
+squid:S106$"9Replace this use of System.out or System.err by a logger.(ŠÌ´Áúÿÿÿÿ8£ŸˆËı-
