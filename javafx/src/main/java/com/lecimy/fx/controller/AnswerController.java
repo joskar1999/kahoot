@@ -1,5 +1,7 @@
 package com.lecimy.fx.controller;
 
+import com.lecimy.fx.viewutils.ViewUtils;
+import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -28,12 +30,22 @@ public class AnswerController implements Initializable {
     private ListView<Position> listView;
 
     private ObservableList<Position> ranking;
+    private CountdownTimer timer;
+    private ViewUtils viewUtils = new ViewUtils();
 
     public AnswerController() {
         ranking = FXCollections.observableArrayList();
         ranking.addAll(new Position(1, "chuj", 125),
             new Position(2, "dupa", 32),
             new Position(3, "pizda", 12));
+        timer = new CountdownTimer(8);
+        timer.setOnSecondElapseListener(() -> {
+            time.setText((timer.getSeconds() - timer.getElapsedSeconds()) + " sekund");
+        });
+        timer.setOnCountdownFinishListener(() -> {
+            Platform.runLater(() -> viewUtils.switchScenes("questionPage.fxml"));
+        });
+        timer.startTimer();
     }
 
     @Override

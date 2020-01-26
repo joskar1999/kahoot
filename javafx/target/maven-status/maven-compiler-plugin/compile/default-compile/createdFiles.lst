@@ -8,6 +8,7 @@ com\lecimy\fx\listener\OnFailureHostCreationListener.class
 com\lecimy\fx\controller\WelcomeController.class
 com\lecimy\fx\net\RequestMessages.class
 com\lecimy\fx\listener\OnFailureUserCreationListener.class
+com\lecimy\fx\net\handler\AnswerHandler.class
 com\lecimy\fx\viewutils\HostListViewCell.class
 com\lecimy\fx\net\handler\GameInitializationHandler.class
 com\lecimy\fx\net\handler\RequestHandler.class
@@ -24,6 +25,7 @@ com\lecimy\fx\net\handler\UserGameAwaitingHandler.class
 com\lecimy\fx\utils\CountdownTimer.class
 com\lecimy\fx\listener\OnFailureGameInitializationListener.class
 com\lecimy\fx\listener\EventListener.class
+com\lecimy\fx\listener\OnCorrectAnswerListener.class
 com\lecimy\fx\listener\OnFailureNickCreationListener.class
 com\lecimy\fx\controller\WrongNickController.class
 com\lecimy\fx\listener\OnSuccessUserCreationListener.class
@@ -36,6 +38,7 @@ com\lecimy\fx\listener\OnGameStartListener.class
 com\lecimy\fx\listener\OnSuccessGameInitializationListener.class
 com\lecimy\fx\net\handler\UserDataFetchHandler.class
 com\lecimy\fx\net\handler\HostGameAwaitingHandler.class
+com\lecimy\fx\listener\OnWrongAnswerListener.class
 com\lecimy\fx\listener\OnSuccessJoinGameListener.class
 com\lecimy\fx\net\handler\JoinGameHandler.class
 com\lecimy\fx\controller\AnswerController.class

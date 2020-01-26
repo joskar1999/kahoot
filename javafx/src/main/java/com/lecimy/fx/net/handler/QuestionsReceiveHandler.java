@@ -4,7 +4,6 @@ import com.lecimy.fx.listener.EventListener;
 import com.lecimy.fx.listener.OnFailureQuestionsReceiveListener;
 import com.lecimy.fx.listener.OnSuccessQuestionsReceiveListener;
 import com.lecimy.fx.model.Question;
-import com.lecimy.fx.model.Quiz;
 import com.lecimy.fx.net.ClientThread;
 import com.lecimy.fx.store.DataStore;
 

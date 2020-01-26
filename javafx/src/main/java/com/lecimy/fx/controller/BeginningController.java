@@ -5,6 +5,7 @@ import com.lecimy.fx.listener.OnFailureQuestionsReceiveListener;
 import com.lecimy.fx.listener.OnSuccessQuestionsReceiveListener;
 import com.lecimy.fx.net.Client;
 import com.lecimy.fx.net.ClientThread;
+import com.lecimy.fx.net.RequestMessages;
 import com.lecimy.fx.net.handler.QuestionsReceiveHandler;
 import com.lecimy.fx.store.DataStore;
 import com.lecimy.fx.utils.CountdownTimer;
@@ -16,6 +17,8 @@ import javafx.scene.text.Text;
 
 import java.net.URL;
 import java.util.ResourceBundle;
+
+import static com.lecimy.fx.net.RequestMessages.OK;
 
 public class BeginningController implements Initializable {
 
@@ -30,7 +33,7 @@ public class BeginningController implements Initializable {
     public BeginningController() {
         timer = new CountdownTimer(5);
         timer.setOnSecondElapseListener(() -> {
-            seconds.setText((5 - timer.getElapsedSeconds()) + " sekund");
+            seconds.setText((timer.getSeconds() - timer.getElapsedSeconds()) + " sekund");
         });
         timer.setOnCountdownFinishListener(() -> {
             System.out.println("game is beginning");
@@ -40,6 +43,8 @@ public class BeginningController implements Initializable {
         clientThread.setRequestHandler(new QuestionsReceiveHandler());
         clientThread.setEventListeners(new EventListener[]{
             (OnSuccessQuestionsReceiveListener) () -> {
+                client.sendMessage(OK);
+                DataStore.setCurrentQuestion(0);
                 System.out.println("questions received");
                 System.out.println(DataStore.getQuestions());
                 System.out.println(DataStore.getQuestionsAmount());

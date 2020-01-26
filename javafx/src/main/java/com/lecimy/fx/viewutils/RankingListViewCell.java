@@ -38,6 +38,11 @@ public class RankingListViewCell extends ListCell<Position> {
             if (loader == null) {
                 loader = new FXMLLoader(getClass().getResource("/fxml/rankingListViewCell.fxml"));
                 loader.setController(this);
+                try {
+                    loader.load();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
             }
             place.setText("Miejsce: " + item.getPlace() + ", ");
             nick.setText(item.getName() + ", ");
