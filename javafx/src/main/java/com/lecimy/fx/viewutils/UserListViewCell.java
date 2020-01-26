@@ -3,7 +3,6 @@ package com.lecimy.fx.viewutils;
 import com.lecimy.fx.controller.UserAwaitingController;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
 import javafx.scene.control.ListCell;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.text.Text;
@@ -11,15 +10,12 @@ import com.lecimy.fx.model.Quiz;
 import com.lecimy.fx.listener.EventListener;
 import com.lecimy.fx.listener.OnFailureJoinGameListener;
 import com.lecimy.fx.listener.OnSuccessJoinGameListener;
-import com.lecimy.fx.model.Quiz;
 import com.lecimy.fx.net.Client;
 import com.lecimy.fx.net.ClientThread;
 import com.lecimy.fx.net.handler.JoinGameHandler;
-import com.lecimy.fx.store.GameStore;
+import com.lecimy.fx.store.DataStore;
 
-import java.io.File;
 import java.io.IOException;
-import java.net.URL;
 
 import static com.lecimy.fx.net.RequestMessages.JOIN;
 
@@ -77,7 +73,7 @@ public class UserListViewCell extends ListCell<Quiz> {
         clientThread.setRequestHandler(new JoinGameHandler());
         clientThread.setEventListeners(new EventListener[]{
             (OnSuccessJoinGameListener) () -> {
-                GameStore.setQuiz(quiz);
+                DataStore.setQuiz(quiz);
                 Thread thread = new Thread(() -> {
                     try {
                         Thread.sleep(500);

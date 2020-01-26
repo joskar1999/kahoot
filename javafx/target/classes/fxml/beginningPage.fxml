@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="768.0" prefWidth="1366.0" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.lecimy.fx.controller.BeginningController">
+   <children>
+      <ImageView fitHeight="788.0" fitWidth="1385.0">
+         <image>
+            <Image url="@assets/background.png" />
+         </image>
+      </ImageView>
+      <HBox layoutX="457.0" layoutY="344.0" prefHeight="100.0" prefWidth="200.0">
+         <children>
+            <Text fill="#ff9900" strokeType="OUTSIDE" strokeWidth="0.0" text="Rozpoczęcie gry za:">
+               <font>
+                  <Font size="36.0" />
+               </font>
+               <HBox.margin>
+                  <Insets right="16.0" />
+               </HBox.margin>
+            </Text>
+            <Text fx:id="seconds" fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="5 sekund">
+               <font>
+                  <Font size="36.0" />
+               </font>
+            </Text>
+         </children>
+      </HBox>
+   </children>
+</AnchorPane>
