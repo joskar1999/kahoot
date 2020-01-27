@@ -172,6 +172,7 @@ void chooseQuiz(int clientDesc){
             game.hostDesc = clientDesc;
             game.gameQuiz = allQuiz[i];
             game.id = uniqueId;
+            game.actuallAnswerAmount = 0;
             uniqueId++;
 
 //            for(int k=0;k<Users.size();k++){
@@ -218,7 +219,6 @@ void sendingQuizInformation(int clientDesc){
 //        questionStringAmount = questionStringAmount + "\n";
         char const *questionCharAmountar = questionStringAmount.c_str();  //use char const* as target type
         write(clientDesc , questionCharAmountar, strlen(questionCharAmountar));
-
     }
 }
 
@@ -250,6 +250,8 @@ void gameStart(int clientDesc, Game &game){
 
     writeAllQuizInformation(clientDesc, game);
 
+
+
     //Sprawdzamy czy klient otrzymal liczbe pytania i wszystkie pytania aby mogl je wyswietlic na FrontEndzie
     char messageBuffer[100];
     ssize_t msgsize = recv(clientDesc, messageBuffer, 100, 0);
@@ -259,64 +261,90 @@ void gameStart(int clientDesc, Game &game){
         cout << "Wyslano poprawnie wszystie quizy" << endl;
     }
 
-    string playerAnswer;
     int timestamp;
 
     for(int i=0;i<game.gameQuiz.questionsAmount;i++){
 
+//        cout << "Runda nr:" << i << endl;
+
         msgsize = recv(clientDesc, messageBuffer, 100, 0);
-        playerAnswer = convertToString(messageBuffer, msgsize);
+        string playerAnswer = convertToString(messageBuffer, msgsize);
         memset(messageBuffer, 0, sizeof messageBuffer);
 
         msgsize = recv(clientDesc, messageBuffer, 100, 0);
         sscanf(messageBuffer, "%d", &timestamp);
         memset(messageBuffer, 0, sizeof messageBuffer);
 
+//        cout << "Odpowiedz:" << playerAnswer << " od desc:" << clientDesc << " w czasie:" << timestamp << endl;
+
         Answer answer;
         answer.answer = playerAnswer;
         answer.answerTime = timestamp;
         answer.playerDesc = clientDesc;
-        cout << "Dostalem odpowiedz : " << playerAnswer << " Od gracza: " << clientDesc << endl;
-        for(int iterLogin=0;iterLogin<game.gameUsers.size();iterLogin++){
+
+        cout << "Odpowiedz gracza to:" << answer.answer;
+
+//        gameMutex.lock();
+        for(int iterLogin=0; iterLogin <game.gameUsers.size();iterLogin++){
             if(game.gameUsers[iterLogin].userDesc == clientDesc){
                 answer.login = game.gameUsers[iterLogin].login;
             }
         }
-        if(playerAnswer == game.gameQuiz.questions[i].answer)
-            answer.isCorrect = 1;
-        else
-            answer.isCorrect = 0;
+//        gameMutex.unlock();
 
-        gameMutex.lock();
+
+
+        if(answer.answer == game.gameQuiz.questions[i].answer) {
+            answer.isCorrect = 1;
+//            cout << "Wyslano okej" << endl;
+        }
+        else {
+            answer.isCorrect = 0;
+//            cout << "Wyslano nie okej" << endl;
+        }
+
+//        gameMutex.lock();
         game.Answers.push_back(answer);
         game.actuallAnswerAmount++;
-        gameMutex.unlock();
+//        gameMutex.unlock();
 
+//        cout << "Poprawna odpowiedz to: " << game.gameQuiz.questions[i].answer << endl;
+//        cout << "Liczba graczy to: " << game.gameUsers.size() + 1 << endl;
+//        cout << "Liczba aktualnych odpowiedzi to: " << game.actuallAnswerAmount << endl;
 
-        if(game.gameUsers.size() != game.actuallAnswerAmount){
+        if(game.gameUsers.size() + 1 != game.actuallAnswerAmount){
             msgsize = recv(clientDesc, messageBuffer, 100, 0);
             string message = convertToString(messageBuffer, msgsize);
             memset(messageBuffer, 0, sizeof messageBuffer);
+//            cout << "SPRAWDZAM CZY TO OKEJ: " << message << endl;
             if(message == "OK"){
                 if(answer.isCorrect == 1){
                     write(clientDesc, "YES\n", 4);
+//                    cout << "Wyslano okej" << endl;
 
-                } else
+                } else {
                     write(clientDesc, "NO\n", 3);
+//                    cout << "Wyslano nie okej" << endl;
+                }
 
                 const char * playerPointsChar = integerToChar(answer.points);
                 write(clientDesc, playerPointsChar, strlen(playerPointsChar));
                 write(clientDesc, "RANK_HEADER\n", 12);
-
-                const char * playerAmountsRanking = integerToChar(game.gameUsers.size());
-                write(clientDesc, playerAmountsRanking, strlen(playerAmountsRanking));
-
-                for(int iter;iter<game.Answers.size();iter++){
-                    write(game.Answers[iter].playerDesc, game.Answers[iter].login.c_str(),strlen(game.Answers[iter].login.c_str()));
-
-                    const char * playerPointsRanking = integerToChar(game.Answers[iter].points);
-                    write(game.Answers[iter].playerDesc, playerPointsRanking, strlen(playerPointsRanking));
+                write(clientDesc, "3\n", 2);
+                for(int hardCoded =0; hardCoded<3;hardCoded++){
+                    write(clientDesc, "Spejson\n", 8);
+                    write(clientDesc, "100\n", 4);
                 }
+
+//                const char * playerAmountsRanking = integerToChar(game.gameUsers.size());
+//                write(clientDesc, playerAmountsRanking, strlen(playerAmountsRanking));
+//
+//                for(int iter;iter<game.Answers.size();iter++){
+//                    write(game.Answers[iter].playerDesc, game.Answers[iter].login.c_str(),strlen(game.Answers[iter].login.c_str()));
+//
+//                    const char * playerPointsRanking = integerToChar(game.Answers[iter].points);
+//                    write(game.Answers[iter].playerDesc, playerPointsRanking, strlen(playerPointsRanking));
+//                }
             }
         }
         else{
@@ -331,13 +359,14 @@ void gameStart(int clientDesc, Game &game){
                     game.Answers[j].points = 0;
             }
             for(int k=0;k<game.gameUsers.size();k++){
+//                cout << "Wysylam ALL na desc: " <<game.gameUsers[k].userDesc << endl;
                 write(game.gameUsers[k].userDesc, "ALL\n",4);
             }
             write(game.hostDesc, "ALL\n",4);
             msgsize = recv(clientDesc, messageBuffer, 100, 0);
-            string message = convertToString(messageBuffer, msgsize);
+            string message3 = convertToString(messageBuffer, msgsize);
             memset(messageBuffer, 0, sizeof messageBuffer);
-            if(message == "OK"){
+            if(message3 == "OK"){
                 if(answer.isCorrect == 1){
                     write(clientDesc, "YES\n", 4);
 
@@ -347,25 +376,33 @@ void gameStart(int clientDesc, Game &game){
                 const char * playerPointsChar = integerToChar(answer.points);
                 write(clientDesc, playerPointsChar, strlen(playerPointsChar));
                 write(clientDesc, "RANK_HEADER\n", 12);
-
-                const char * playerAmountsRanking = integerToChar(game.gameUsers.size());
-                write(clientDesc, playerAmountsRanking, strlen(playerAmountsRanking));
-
-                for(int iterRank; iterRank < game.Answers.size(); iterRank++){
-                    write(game.Answers[iterRank].playerDesc, game.Answers[iterRank].login.c_str(), strlen(game.Answers[iterRank].login.c_str()));
-
-                    const char * playerPointsRanking = integerToChar(game.Answers[iterRank].points);
-                    write(game.Answers[iterRank].playerDesc, playerPointsRanking, strlen(playerPointsRanking));
+                write(clientDesc, "3\n", 2);
+//                gameMutex.lock();
+                for(int hardCoded =0; hardCoded<3;hardCoded++){
+                    write(clientDesc, "Spejson\n", 8);
+                    write(clientDesc, "100\n", 4);
                 }
+//                gameMutex.unlock();
+                game.Answers.clear();
+                game.actuallAnswerAmount = 0;
+
+
+//                const char * playerAmountsRanking = integerToChar(game.gameUsers.size());
+//                write(clientDesc, playerAmountsRanking, strlen(playerAmountsRanking));
+//
+//                for(int iterRank; iterRank < game.Answers.size(); iterRank++){
+//                    write(game.Answers[iterRank].playerDesc, game.Answers[iterRank].login.c_str(), strlen(game.Answers[iterRank].login.c_str()));
+//
+//                    const char * playerPointsRanking = integerToChar(game.Answers[iterRank].points);
+//                    write(game.Answers[iterRank].playerDesc, playerPointsRanking, strlen(playerPointsRanking));
+//                }
             }
         }
-        msgsize = recv(clientDesc, messageBuffer, 100, 0);
-        memset(messageBuffer, 0, sizeof messageBuffer);
-
-        game.Answers.clear();
-        game.actuallAnswerAmount = 0;
-
+        cout << "Odpowiedz ze struktury to:" << game.gameQuiz.questions[i].answer;
     }
+    msgsize = recv(clientDesc, messageBuffer, 100, 0);
+    memset(messageBuffer, 0, sizeof messageBuffer);
+
 
 }
 
