@@ -16,6 +16,7 @@
 #include <sstream>
 #include <stdio.h>
 #include <mutex>
+#include <algorithm>
 
 
 using namespace std;
@@ -24,7 +25,18 @@ using namespace std;
 
 int uniqueId = 1;
 
-mutex userAmountMutex;
+mutex gameMutex;
+mutex answerAmountMutex;
+
+struct Answer{
+    string answer;
+    int answerTime;
+    int points;
+    int isCorrect;
+    int playerDesc;
+    string login;
+};
+
 
 struct Question{
     string question;
@@ -49,7 +61,9 @@ struct Game{
     Quiz gameQuiz;
     int id;
     int userAmount;
-    vector <User> gameUsers;
+    vector<User> gameUsers;
+    vector<Answer> Answers;
+    int actuallAnswerAmount;
 };
 
 
@@ -224,7 +238,12 @@ void writeAllQuizInformation(int clientDesc, Game game){
     }
 }
 
-void gameStart(int clientDesc, Game game){
+bool swapAnswers(Answer a, Answer b)
+{
+    return a.answerTime < b.answerTime;
+}
+
+void gameStart(int clientDesc, Game &game){
 
     //Gra sie rozpoczela, informujemy o tym klienta aby sie przygotowal na odbior danych
     write(clientDesc, "QUIZ\n", 5);
@@ -240,27 +259,113 @@ void gameStart(int clientDesc, Game game){
         cout << "Wyslano poprawnie wszystie quizy" << endl;
     }
 
-    string answer;
+    string playerAnswer;
     int timestamp;
 
     for(int i=0;i<game.gameQuiz.questionsAmount;i++){
 
         msgsize = recv(clientDesc, messageBuffer, 100, 0);
-        answer = convertToString(messageBuffer, msgsize);
+        playerAnswer = convertToString(messageBuffer, msgsize);
         memset(messageBuffer, 0, sizeof messageBuffer);
 
         msgsize = recv(clientDesc, messageBuffer, 100, 0);
         sscanf(messageBuffer, "%d", &timestamp);
         memset(messageBuffer, 0, sizeof messageBuffer);
 
+        Answer answer;
+        answer.answer = playerAnswer;
+        answer.answerTime = timestamp;
+        answer.playerDesc = clientDesc;
+        cout << "Dostalem odpowiedz : " << playerAnswer << " Od gracza: " << clientDesc << endl;
+        for(int iterLogin=0;iterLogin<game.gameUsers.size();iterLogin++){
+            if(game.gameUsers[iterLogin].userDesc == clientDesc){
+                answer.login = game.gameUsers[iterLogin].login;
+            }
+        }
+        if(playerAnswer == game.gameQuiz.questions[i].answer)
+            answer.isCorrect = 1;
+        else
+            answer.isCorrect = 0;
+
+        gameMutex.lock();
+        game.Answers.push_back(answer);
+        game.actuallAnswerAmount++;
+        gameMutex.unlock();
+
+
+        if(game.gameUsers.size() != game.actuallAnswerAmount){
+            msgsize = recv(clientDesc, messageBuffer, 100, 0);
+            string message = convertToString(messageBuffer, msgsize);
+            memset(messageBuffer, 0, sizeof messageBuffer);
+            if(message == "OK"){
+                if(answer.isCorrect == 1){
+                    write(clientDesc, "YES\n", 4);
+
+                } else
+                    write(clientDesc, "NO\n", 3);
+
+                const char * playerPointsChar = integerToChar(answer.points);
+                write(clientDesc, playerPointsChar, strlen(playerPointsChar));
+                write(clientDesc, "RANK_HEADER\n", 12);
+
+                const char * playerAmountsRanking = integerToChar(game.gameUsers.size());
+                write(clientDesc, playerAmountsRanking, strlen(playerAmountsRanking));
+
+                for(int iter;iter<game.Answers.size();iter++){
+                    write(game.Answers[iter].playerDesc, game.Answers[iter].login.c_str(),strlen(game.Answers[iter].login.c_str()));
+
+                    const char * playerPointsRanking = integerToChar(game.Answers[iter].points);
+                    write(game.Answers[iter].playerDesc, playerPointsRanking, strlen(playerPointsRanking));
+                }
+            }
+        }
+        else{
+            sort(game.Answers.begin(),game.Answers.end(),swapAnswers);
+            int pointsTemp = 10;
+            for(int j=0;j<game.Answers.size();j++) {
+                if (game.Answers[j].isCorrect) {
+                game.Answers[j].points = pointsTemp;
+                pointsTemp--;
+                }
+                else
+                    game.Answers[j].points = 0;
+            }
+            for(int k=0;k<game.gameUsers.size();k++){
+                write(game.gameUsers[k].userDesc, "ALL\n",4);
+            }
+            write(game.hostDesc, "ALL\n",4);
+            msgsize = recv(clientDesc, messageBuffer, 100, 0);
+            string message = convertToString(messageBuffer, msgsize);
+            memset(messageBuffer, 0, sizeof messageBuffer);
+            if(message == "OK"){
+                if(answer.isCorrect == 1){
+                    write(clientDesc, "YES\n", 4);
+
+                } else
+                    write(clientDesc, "NO\n", 3);
+
+                const char * playerPointsChar = integerToChar(answer.points);
+                write(clientDesc, playerPointsChar, strlen(playerPointsChar));
+                write(clientDesc, "RANK_HEADER\n", 12);
+
+                const char * playerAmountsRanking = integerToChar(game.gameUsers.size());
+                write(clientDesc, playerAmountsRanking, strlen(playerAmountsRanking));
+
+                for(int iterRank; iterRank < game.Answers.size(); iterRank++){
+                    write(game.Answers[iterRank].playerDesc, game.Answers[iterRank].login.c_str(), strlen(game.Answers[iterRank].login.c_str()));
+
+                    const char * playerPointsRanking = integerToChar(game.Answers[iterRank].points);
+                    write(game.Answers[iterRank].playerDesc, playerPointsRanking, strlen(playerPointsRanking));
+                }
+            }
+        }
+        msgsize = recv(clientDesc, messageBuffer, 100, 0);
+        memset(messageBuffer, 0, sizeof messageBuffer);
+
+        game.Answers.clear();
+        game.actuallAnswerAmount = 0;
 
     }
-
-
-
-
-
-
 
 }
 
