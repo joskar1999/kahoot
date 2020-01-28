@@ -1,0 +1,23 @@
+
+Osquid:S1602D",Remove useless curly braces around statement(Úæõıÿÿÿÿ8Æ¡çş-
+[
+squid:S106J"9Replace this use of System.out or System.err by a logger.(ÔüÍõüÿÿÿÿ8ŒéúŸş-
+tsquid:UselessImportCheck"IRemove this unused import 'com.lecimy.fx.listener.OnWrongAnswerListener'.(ìÚ‰¨8Ú•ìŸş-
+[
+squid:S106{"9Replace this use of System.out or System.err by a logger.(ÃÉíşÿÿÿÿ8İšÈ¹ş-
+V
+squid:S106‰"9Replace this use of System.out or System.err by a logger.(Ó¢…Q8İšÈ¹ş-
+Ssquid:S1068:"0Remove this unused "clientThread" private field.(íôüÿÿÿÿ8Ú•ìŸş-
+lsquid:UselessImportCheck"ARemove this unused import 'com.lecimy.fx.listener.EventListener'.(¦¢‚ƒ8Ú•ìŸş-
+{squid:UselessImportCheck"KRemove this unused import 'com.lecimy.fx.listener.OnCorrectAnswerListener'.(ŒìğÜûÿÿÿÿ8Ú•ìŸş-
+nsquid:UselessImportCheck	">Remove this unused import 'com.lecimy.fx.net.RequestMessages'.(ş³î¯ÿÿÿÿÿ8Õı«ş-
+Fsquid:S1148T"#Use a logger to log this exception.(€ÉÔ…ıÿÿÿÿ8üŞ¹¢ş-
+\
+squid:S106ƒ"9Replace this use of System.out or System.err by a logger.(ÜÆØ‚ıÿÿÿÿ8‘Å²»ş-
+W
+squid:S106™"9Replace this use of System.out or System.err by a logger.(Ïôü8œØÈ¹ş-
+dsquid:S2142S"FEither re-interrupt this method or rethrow the "InterruptedException".(ä ¹€8üŞ¹¢ş-
+tsquid:UselessImportCheck
+"DRemove this unused import 'com.lecimy.fx.net.handler.AnswerHandler'.(§ë°éıÿÿÿÿ8Ú•ìŸş-
+\
+squid:S106‘"9Replace this use of System.out or System.err by a logger.(¹áÊæøÿÿÿÿ8İšÈ¹ş-

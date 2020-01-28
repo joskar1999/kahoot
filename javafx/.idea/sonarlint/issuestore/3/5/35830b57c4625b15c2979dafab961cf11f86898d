@@ -1,11 +1,11 @@
 
 [
-squid:S106&"9Replace this use of System.out or System.err by a logger.(İêˆşÿÿÿÿ8Ëš¹›ı-
-[
 squid:S106,"9Replace this use of System.out or System.err by a logger.(¯’Şàúÿÿÿÿ8ü¥ÄØù-
+[
+squid:S106&"9Replace this use of System.out or System.err by a logger.(İêˆşÿÿÿÿ8Ëš¹›ı-
 Fsquid:S1148"#Use a logger to log this exception.(€ÉÔ…ıÿÿÿÿ8¸åÈƒù-
 Fsquid:S1148("#Use a logger to log this exception.(€ÉÔ…ıÿÿÿÿ8¸åÈƒù-
 V
-squid:S106)"9Replace this use of System.out or System.err by a logger.(»ß™ 8¸åÈƒù-
-V
 squid:S106"9Replace this use of System.out or System.err by a logger.(±¥í‰8¸åÈƒù-
+V
+squid:S106)"9Replace this use of System.out or System.err by a logger.(»ß™ 8¸åÈƒù-

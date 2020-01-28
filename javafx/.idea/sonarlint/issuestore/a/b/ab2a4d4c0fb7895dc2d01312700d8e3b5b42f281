@@ -1,0 +1,6 @@
+
+Rsquid:UselessImportCheck")Remove this unused import 'java.net.URL'.(ñìÁ„üÿÿÿÿ
+jsquid:MaximumInheritanceDepth"<This class has 9 parents which is greater than 5 authorized.(¨‰¹úüÿÿÿÿ
+Msquid:UselessImportCheck
+")Remove this unused import 'java.io.File'.(†Ð¥Å
+Fsquid:S1148,"#Use a logger to log this exception.(€ÉÔ…ýÿÿÿÿ8¶ìÄ þ-

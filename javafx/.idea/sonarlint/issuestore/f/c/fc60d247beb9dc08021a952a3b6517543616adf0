@@ -1,0 +1,15 @@
+
+[
+squid:S1060"9Replace this use of System.out or System.err by a logger.(óÿ®øÿÿÿÿ8ÜÚáş-
+[
+squid:S1061"9Replace this use of System.out or System.err by a logger.(Ğ§ “şÿÿÿÿ8ÜÚáş-
+Jsquid:S16124",Replace this lambda with a method reference.(ğ›¡8ÜÚáş-
+[
+squid:S106'"9Replace this use of System.out or System.err by a logger.(Ûšîÿÿÿÿÿ8”•éş-
+V
+squid:S1062"9Replace this use of System.out or System.err by a logger.(î÷ĞÊ8ÜÚáş-
+¤squid:S1186:"€Add a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation.(ÛŒ¦…ıÿÿÿÿ8ÜÚáş-
+nsquid:UselessImportCheck">Remove this unused import 'com.lecimy.fx.net.RequestMessages'.(ş³î¯ÿÿÿÿÿ8”•éş-
+V
+squid:S1064"9Replace this use of System.out or System.err by a logger.(ğ›¡8ÜÚáş-
+Osquid:S1602#",Remove useless curly braces around statement(Úæõıÿÿÿÿ8”•éş-

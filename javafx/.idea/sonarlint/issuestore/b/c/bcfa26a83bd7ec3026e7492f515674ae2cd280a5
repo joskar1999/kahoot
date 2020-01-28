@@ -1,3 +1,19 @@
 
-ysquid:UselessImportCheck
-"IRemove this unused import 'main.java.com.lecimy.fx.utils.CountdownTimer'.(°ïŒšüÿÿÿÿ8ÂæÌù-
+V
+squid:S106R"9Replace this use of System.out or System.err by a logger.(ûìÌŞ8¶åñ¡ş-
+Jsquid:S16023",Remove useless curly braces around statement(ä‰óê8„Ù ş-
+V
+squid:S106G"9Replace this use of System.out or System.err by a logger.(¢òõ¡8¬ÁĞ¡ş-
+V
+squid:S106_"9Replace this use of System.out or System.err by a logger.(™ŒÎŒ8Ë…¶¢ş-
+Ksquid:S2114M"(Remove or correct this "removeAll" call.(²ã‰óşÿÿÿÿ8ª—Şºş-
+csquid:HiddenFieldCheck?":Rename "points" which hides the field declared at line 30.(ÕÁÁƒ8’êß¡ş-
+csquid:HiddenFieldCheck9":Rename "points" which hides the field declared at line 30.(«Ã‘Í8ÑóŞ¡ş-
+Osquid:S16020",Remove useless curly braces around statement(Úæõıÿÿÿÿ8“æ× ş-
+V
+squid:S106K"9Replace this use of System.out or System.err by a logger.(‹Ôï8şôè¡ş-
+V
+squid:S106:"9Replace this use of System.out or System.err by a logger.(×±İ8õ°Ø¡ş-
+[
+squid:S106@"9Replace this use of System.out or System.err by a logger.(†áÿëşÿÿÿÿ8§úÙ¡ş-
+Osquid:S1602Q",Remove useless curly braces around statement(†­şÿÿÿÿ8¶åñ¡ş-

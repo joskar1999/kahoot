@@ -9,4 +9,6 @@ public class ResponseMessages {
     public static final String NEW_USER = "NEW_USER";
     public static final String START = "START";
     public static final String QUIZ = "QUIZ";
+    public static final String ALL = "ALL";
+    public static final String RANKING = "RANK_HEADER";
 }

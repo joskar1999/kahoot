@@ -8,7 +8,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="768.0" prefWidth="1366.0" xmlns="http://javafx.com/javafx/" xmlns:fx="http://javafx.com/fxml/" fx:controller="com.lecimy.fx.controller.AnswerController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="768.0" prefWidth="1366.0" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.lecimy.fx.controller.AnswerController">
    <children>
       <ImageView fitHeight="786.0" fitWidth="1384.0">
          <image>
@@ -27,7 +27,7 @@
       </ImageView>
       <HBox layoutX="577.0" layoutY="175.0" prefHeight="42.0" prefWidth="230.0">
          <children>
-            <Text fx:id="answerType" fill="#ff9900" strokeType="OUTSIDE" strokeWidth="0.0" text="Poprawna odpowiedź" textAlignment="CENTER" wrappingWidth="229.6953125">
+            <Text fx:id="answerType" fill="#ff9900" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="CENTER" wrappingWidth="229.6953125">
                <font>
                   <Font name="Arial" size="24.0" />
                </font>
@@ -36,14 +36,14 @@
       </HBox>
       <HBox layoutX="577.0" layoutY="217.0" prefHeight="42.0" prefWidth="230.0">
          <children>
-            <Text fx:id="points" fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Punkty: 12" textAlignment="CENTER" wrappingWidth="228.0517578125">
+            <Text fx:id="points" fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="CENTER" wrappingWidth="228.0517578125">
                <font>
                   <Font name="Arial" size="18.0" />
                </font>
             </Text>
          </children>
       </HBox>
-      <Text fx:id="time" fill="WHITE" layoutX="986.0" layoutY="476.0" strokeType="OUTSIDE" strokeWidth="0.0" text="8 sekund">
+      <Text fx:id="time" fill="WHITE" layoutX="986.0" layoutY="476.0" strokeType="OUTSIDE" strokeWidth="0.0">
          <font>
             <Font name="Arial" size="36.0" />
          </font>

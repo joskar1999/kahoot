@@ -73,12 +73,20 @@ public class QuestionController implements Initializable {
                 stop = Calendar.getInstance().getTimeInMillis();
                 System.out.println("sending E");
                 client.sendMessage(E);
+                handleTime();
             }
-            long duration = stop - start;
-            System.out.println("answer time: " + duration);
-            client.sendMessage(String.valueOf(duration));
             Platform.runLater(() -> {
                 if (DataStore.getCurrentQuestion() != DataStore.getQuestionsAmount()) {
+                    Thread thread = new Thread(() -> {
+                        try {
+                            Thread.sleep(500);
+                        } catch (InterruptedException e) {
+                            e.printStackTrace();
+                        }
+                        AnswerController.callDeferredThread();
+                    });
+                    thread.setDaemon(true);
+                    thread.start();
                     viewUtils.switchScenes("answerPage.fxml");
                 } else {
                     viewUtils.switchScenes("rankingPage.fxml");
@@ -112,24 +120,38 @@ public class QuestionController implements Initializable {
     @FXML
     void aClicked() {
         handleAnswerClicked();
+        System.out.println("sending A");
         client.sendMessage(A);
+        handleTime();
+    }
+
+    private void handleTime() {
+        long duration = stop - start;
+        client.sendMessage(String.valueOf(duration));
+        System.out.println("answer time: " + duration);
     }
 
     @FXML
     void bClicked() {
         handleAnswerClicked();
+        System.out.println("sending B");
         client.sendMessage(B);
+        handleTime();
     }
 
     @FXML
     void cClicked() {
         handleAnswerClicked();
+        System.out.println("sending C");
         client.sendMessage(C);
+        handleTime();
     }
 
     @FXML
     void dClicked() {
         handleAnswerClicked();
+        System.out.println("sending D");
         client.sendMessage(D);
+        handleTime();
     }
 }
